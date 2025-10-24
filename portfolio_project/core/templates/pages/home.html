@@ -1,0 +1,526 @@
+
+{% extends 'base/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block meta_description %}Full Stack Developer & DevOps Engineer specializing in secure database development, Zero Trust architecture, and DevSecOps practices.{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Hero gradient background */
+    .hero-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .dark .hero-gradient {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    }
+    
+    /* Floating animation for hero image */
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    .float-slow {
+        animation: float-slow 6s ease-in-out infinite;
+    }
+    
+    /* Card hover effects */
+    .feature-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-8px);
+    }
+    
+    /* Stat counter animation */
+    .stat-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .stat-card:hover::before {
+        left: 100%;
+    }
+    
+    /* Pulse animation for CTA */
+    @keyframes pulse-ring {
+        0% {
+            transform: scale(0.95);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.3);
+            opacity: 0;
+        }
+    }
+    
+    .pulse-ring {
+        animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+
+<section class="hero-gradient py-20 lg:py-32 relative overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Content -->
+            <div class="text-center lg:text-left animate-fade-in">
+                <div class="inline-block mb-4">
+                    <span class="px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-semibold backdrop-blur-sm">
+                        👋 Welcome to my portfolio
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading mb-6 leading-tight">
+                    {{profile.name}}
+                </h1>
+                
+                <p class="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 opacity-90">
+                    {{profile.job_title}}
+                </p>
+                
+                <p class="text-base sm:text-lg md:text-xl opacity-80 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    
+                    {{profile.summary}}
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                    <a href="/projects" 
+                       class="relative inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl group">
+                        <span class="relative z-10">View My Work</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                        <span class="absolute inset-0 rounded-lg bg-white opacity-0 group-hover:opacity-20 pulse-ring"></span>
+                    </a>
+                    
+                    <a href="/contact" 
+                       class="inline-flex items-center justify-center px-8 py-4 border-2 font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all">
+                        <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center lg:justify-start space-x-6">
+                    <a href={{profile.github_url}} 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="GitHub">
+                        <i class="fab fa-github text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href={{profile.linkedin_url}}
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="LinkedIn">
+                        <i class="fab fa-linkedin text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href={{profile.twitter_url}}
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="Twitter">
+                        <i class="fab fa-twitter text-2xl" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="flex justify-center lg:justify-end animate-slide-up">
+                <div class="relative">
+                    <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-2xl float-slow">
+                        <img src="{{profile.image_url}}" 
+                             alt="Quang Cuong Huynh" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-4 -right-4 bg-white text-primary-600 px-6 py-3 rounded-full shadow-xl font-semibold animate-float">
+                        <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
+                        Available for hire
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#stats" class="text-white opacity-60 hover:opacity-100 transition-opacity">
+            <i class="fas fa-chevron-down text-2xl" aria-hidden="true"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section id="stats" class="py-16 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Stat 1 -->
+            <div class="stat-card bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white text-center shadow-lg">
+                <div class="text-4xl lg:text-5xl font-bold mb-2">5</div>
+                <div class="text-sm lg:text-base opacity-90">Years Experience</div>
+            </div>
+            
+            <!-- Stat 2 -->
+            <div class="stat-card bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white text-center shadow-lg">
+                <div class="text-4xl lg:text-5xl font-bold mb-2">50</div>
+                <div class="text-sm lg:text-base opacity-90">Projects Completed</div>
+            </div>
+            
+            <!-- Stat 3 -->
+            <div class="stat-card bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white text-center shadow-lg">
+                <div class="text-4xl lg:text-5xl font-bold mb-2">15</div>
+                <div class="text-sm lg:text-base opacity-90">Technologies</div>
+            </div>
+            
+            <!-- Stat 4 -->
+            <div class="stat-card bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white text-center shadow-lg">
+                <div class="text-4xl lg:text-5xl font-bold mb-2">8</div>
+                <div class="text-sm lg:text-base opacity-90">Certifications</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What I Do Section -->
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-heading">
+                What I Do
+            </h2>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Delivering end-to-end solutions from architecture design to production deployment
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-cloud text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Cloud Architecture</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Design and implement scalable cloud infrastructure on Azure, AWS, and multi-cloud environments with cost optimization and high availability.
+                </p>
+                <a href="/skills#cloud" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-shield-alt text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Security & Compliance</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Implement Zero Trust architecture, secure database development, and ensure compliance with ISO 27001 and industry standards.
+                </p>
+                <a href="/skills#security" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-code-branch text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">DevOps & CI/CD</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Build automated pipelines with Terraform, Kubernetes, Docker, and GitHub Actions for continuous integration and deployment.
+                </p>
+                <a href="/skills#devops" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-database text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Database Design</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Expert in SQL Server, PostgreSQL, and NoSQL databases with focus on performance tuning, indexing, and secure data architecture.
+                </p>
+                <a href="/skills#database" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-laptop-code text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Full Stack Development</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Build modern web applications with Django, React, and Tailwind CSS. API design, testing, and responsive UI implementation.
+                </p>
+                <a href="/skills#fullstack" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="feature-card bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-project-diagram text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">System Architecture</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Design microservices architecture, API gateways, and event-driven systems with focus on scalability and maintainability.
+                </p>
+                <a href="/skills#architecture" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-heading">
+                    Featured Projects
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400">
+                    Recent work showcasing technical expertise and problem-solving
+                </p>
+            </div>
+            <a href="/projects" class="hidden md:inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                View all projects
+                <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <article class="feature-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                <div class="relative h-48 bg-gradient-to-br from-blue-400 to-blue-600">
+                    <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=E-Commerce+Platform" 
+                         alt="E-Commerce Analytics Platform" 
+                         class="w-full h-full object-cover opacity-75">
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-white dark:bg-gray-900 text-primary-600 dark:text-primary-400 text-xs font-semibold rounded-full">
+                            Featured
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">E-Commerce Analytics Platform</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                        Real-time analytics dashboard with predictive ML models, reducing stockouts by 80% and increasing revenue by $2M annually.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">React</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Django</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">AWS</span>
+                    </div>
+                    <a href="/projects/ecommerce-analytics" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                        View case study
+                        <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Project 2 -->
+            <article class="feature-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                <div class="relative h-48 bg-gradient-to-br from-green-400 to-green-600">
+                    <img src="https://via.placeholder.com/600x400/10B981/FFFFFF?text=AI+Code+Review" 
+                         alt="AI-Powered Code Review System" 
+                         class="w-full h-full object-cover opacity-75">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">AI-Powered Code Review System</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                        Automated code review using ML models, reducing manual review time by 60% and catching 90% of common bugs.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Python</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">ML</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">FastAPI</span>
+                    </div>
+                    <a href="/projects/ai-code-review" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                        View case study
+                        <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Project 3 -->
+            <article class="feature-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                <div class="relative h-48 bg-gradient-to-br from-purple-400 to-purple-600">
+                    <img src="https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Blockchain+Tracker" 
+                         alt="Blockchain Supply Chain Tracker" 
+                         class="w-full h-full object-cover opacity-75">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Blockchain Supply Chain Tracker</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                        Ethereum-based tracking system for product authenticity, eliminating counterfeits and increasing consumer trust by 80%.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Ethereum</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Solidity</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">React</span>
+                    </div>
+                    <a href="/projects/blockchain-tracker" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center">
+                        View case study
+                        <i class="fas fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+        
+        <!-- Mobile "View All" button -->
+        <div class="mt-8 text-center md:hidden">
+            <a href="/projects" class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors">
+                View all projects
+                <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-heading">
+            Let's Build Something Amazing Together
+        </h2>
+        <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+            Whether you need cloud architecture, DevOps automation, or full-stack development, 
+            I'm here to help bring your vision to life with secure, scalable solutions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" 
+               class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl">
+                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                Start a Conversation
+            </a>
+            <a href="/static/resume.pdf" download
+               class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-all">
+                <i class="fas fa-file-alt mr-2" aria-hidden="true"></i>
+                Download Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Smooth scroll for in-page anchor links (only if target exists on this page)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        const targetId = anchor.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target && targetId.length > 1) {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        }
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    // Observe all feature cards and project cards specifically
+    document.querySelectorAll('.feature-card, article.feature-card').forEach(el => {
+        observer.observe(el);
+    });
+    });
+
+    // Counter animation for stats
+    const animateCounter = (element, target, duration = 2000) => {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target + '+';
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current) + '+';
+            }
+        }, 16);
+    };
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.stat-card .text-4xl').forEach((el, index) => {
+                    // Extract the numeric value from the element's text content (e.g., "5+")
+                    const text = el.textContent.trim();
+                    const match = text.match(/^(\d+)/);
+                    const target = match ? parseInt(match[1], 10) : 0;
+                    setTimeout(() => {
+                        animateCounter(el, target);
+                    }, index * 200);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const statsSection = document.getElementById('stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+</script>
+{% endblock %}

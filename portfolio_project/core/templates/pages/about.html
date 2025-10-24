@@ -1,0 +1,847 @@
+{% extends 'base/base.html' %}
+
+{% block title %}About & Resume{% endblock %}
+
+{% block meta_description %}Professional profile and resume of Quang Cuong Huynh - Full Stack Developer & DevOps Engineer with expertise in cloud architecture, security, and DevSecOps.{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Print styles */
+    @media print {
+        body {
+            @apply bg-white text-black;
+        }
+        
+        .no-print {
+            display: none !important;
+        }
+        
+        .print-section {
+            page-break-inside: avoid;
+        }
+        
+        .print-break-before {
+            page-break-before: always;
+        }
+        
+        h2, h3 {
+            page-break-after: avoid;
+        }
+        
+        .shadow-lg, .shadow-xl {
+            box-shadow: none !important;
+        }
+    }
+    
+    /* Timeline connector */
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 50px;
+        bottom: -20px;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(59, 130, 246, 0.5), transparent);
+    }
+    
+    .dark .timeline-item::before {
+        background: linear-gradient(to bottom, rgba(96, 165, 250, 0.3), transparent);
+    }
+    
+    .timeline-item:last-child::before {
+        display: none;
+    }
+    
+    /* Smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white overflow-hidden no-print">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <!-- Profile Image -->
+            <div class="flex-shrink-0">
+                <div class="relative">
+                    <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
+                        <img src="https://via.placeholder.com/300x300/667eea/ffffff?text=Profile" 
+                             alt="Quang Cuong Huynh" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <!-- Status badge -->
+                    <div class="absolute -bottom-4 -right-4 bg-green-500 px-4 py-2 rounded-full shadow-lg flex items-center">
+                        <span class="w-3 h-3 bg-white rounded-full mr-2 animate-pulse"></span>
+                        <span class="text-sm font-semibold">Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Info -->
+            <div class="flex-1 text-center lg:text-left">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading mb-4">
+                    Quang Cuong Huynh
+                </h1>
+                <p class="text-xl sm:text-2xl font-semibold mb-4 opacity-90">
+                    Full Stack Developer & DevOps Engineer
+                </p>
+                <p class="text-base sm:text-lg opacity-80 mb-6 leading-relaxed max-w-3xl mx-auto lg:mx-0">
+                    Engineer specializing in secure database development, Zero Trust architecture, and DevSecOps practices. 
+                    Designing resilient cloud infrastructure with a security-first mindset.
+                </p>
+                
+                <!-- Quick Actions -->
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <button onclick="window.print()" 
+                            class="inline-flex items-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+                        <i class="fas fa-download mr-2" aria-hidden="true"></i>
+                        Download Resume
+                    </button>
+                    <a href="/contact" 
+                       class="inline-flex items-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors">
+                        <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex gap-4 justify-center lg:justify-start mt-6">
+                    <a href="https://github.com/johndoe" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="GitHub">
+                        <i class="fab fa-github text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/johndoe" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="LinkedIn">
+                        <i class="fab fa-linkedin text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com/johndoe" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="w-12 h-12 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm transition-all hover:scale-110"
+                       aria-label="Twitter">
+                        <i class="fab fa-twitter text-2xl" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Navigation (Sticky on scroll) -->
+<nav class="sticky top-16 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex overflow-x-auto scrollbar-hide">
+            <a href="#about" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                About Me
+            </a>
+            <a href="#experience" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                Experience
+            </a>
+            <a href="#education" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                Education
+            </a>
+            <a href="#skills" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                Skills
+            </a>
+            <a href="#certifications" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                Certifications
+            </a>
+            <a href="#languages" class="nav-tab px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border-b-2 border-transparent hover:border-primary-600 transition-colors whitespace-nowrap">
+                Languages
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- About Me Section -->
+<section id="about" class="py-20 bg-white dark:bg-gray-900 print-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8 font-heading">
+            About Me
+        </h2>
+        
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                I'm a Full Stack Developer and DevOps Engineer with over 5 years of experience building secure, 
+                scalable cloud infrastructure. My focus is on implementing Zero Trust security architectures, 
+                DevSecOps practices, and database-first design principles.
+            </p>
+            
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                Throughout my career, I've led teams in migrating legacy systems to modern cloud platforms, 
+                reducing infrastructure costs by 40% while improving system reliability to 99.9% uptime. 
+                I specialize in Azure and AWS environments, with expertise in Terraform, Kubernetes, and CI/CD automation.
+            </p>
+            
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                I believe in continuous learning and staying current with industry best practices. 
+                My approach combines technical excellence with clear communication, ensuring that complex 
+                technical solutions are understood and supported by all stakeholders.
+            </p>
+        </div>
+        
+        <!-- Key Highlights -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 dark:bg-opacity-20 rounded-xl">
+                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</div>
+                <div class="text-sm text-gray-700 dark:text-gray-300 font-semibold">Years Experience</div>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 dark:bg-opacity-20 rounded-xl">
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">50+</div>
+                <div class="text-sm text-gray-700 dark:text-gray-300 font-semibold">Projects Delivered</div>
+            </div>
+            <div class="p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 dark:bg-opacity-20 rounded-xl">
+                <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">8+</div>
+                <div class="text-sm text-gray-700 dark:text-gray-300 font-semibold">Certifications</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-20 bg-gray-50 dark:bg-gray-800 print-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Professional Experience
+        </h2>
+        
+        <!-- Timeline -->
+        <div class="space-y-12">
+            <!-- Experience Item 1 -->
+            <div class="timeline-item relative pl-12">
+                <!-- Timeline dot -->
+                <div class="absolute left-0 top-0 w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-briefcase text-white text-sm" aria-hidden="true"></i>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                                Senior Technical Lead
+                            </h3>
+                            <p class="text-primary-600 dark:text-primary-400 font-semibold">
+                                TechCorp Industries
+                            </p>
+                        </div>
+                        <span class="mt-2 sm:mt-0 inline-flex items-center px-3 py-1 bg-green-100 dark:bg-green-900 dark:bg-opacity-30 text-green-700 dark:text-green-300 rounded-full text-sm font-semibold">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            2022 - Present
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Led modernization of legacy monolithic system to microservices, achieving 99.9% uptime</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Reduced deployment time from 4 hours to 15 minutes through CI/CD automation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Mentored team of 8 developers, increasing productivity by 40%</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Docker</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Kubernetes</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">AWS</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Python</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience Item 2 -->
+            <div class="timeline-item relative pl-12">
+                <div class="absolute left-0 top-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-code text-white text-sm" aria-hidden="true"></i>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                                Full Stack Developer
+                            </h3>
+                            <p class="text-primary-600 dark:text-primary-400 font-semibold">
+                                StartupXYZ
+                            </p>
+                        </div>
+                        <span class="mt-2 sm:mt-0 inline-block px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-semibold">
+                            2020 - 2022
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Built MVP from scratch, securing $2M Series A funding</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Achieved 10,000 users in first 3 months with 99.5% uptime</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Implemented payment processing with Stripe, handling $100K ARR</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">React</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Node.js</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">PostgreSQL</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">AWS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience Item 3 -->
+            <div class="timeline-item relative pl-12">
+                <div class="absolute left-0 top-0 w-10 h-10 bg-green-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-laptop-code text-white text-sm" aria-hidden="true"></i>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                                Software Engineer
+                            </h3>
+                            <p class="text-primary-600 dark:text-primary-400 font-semibold">
+                                Digital Solutions Inc
+                            </p>
+                        </div>
+                        <span class="mt-2 sm:mt-0 inline-block px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-semibold">
+                            2018 - 2020
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Delivered 25+ web applications with 100% on-time delivery rate</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Reduced bug reports by 70% through automated testing implementation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-primary-600 dark:text-primary-400 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                            <span>Secured $3M contract renewals through improved client satisfaction</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Django</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">Vue.js</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="py-20 bg-white dark:bg-gray-900 print-section print-break-before">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Education
+        </h2>
+        
+        <div class="space-y-8">
+            <!-- Education Item 1 -->
+            <div class="bg-gradient-to-r from-primary-50 to-accent-50 dark:from-gray-800 dark:to-gray-800 rounded-xl p-6 shadow-lg">
+                <div class="flex items-start space-x-4">
+                    <div class="w-16 h-16 bg-primary-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                        <i class="fas fa-graduation-cap text-2xl text-white" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                            Bachelor of Science in Computer Science
+                        </h3>
+                        <p class="text-primary-600 dark:text-primary-400 font-semibold mb-2">
+                            University of Technology
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            2014 - 2018 | GPA: 3.8/4.0
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full">
+                                Data Structures
+                            </span>
+                            <span class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full">
+                                Algorithms
+                            </span>
+                            <span class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full">
+                                Database Systems
+                            </span>
+                            <span class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full">
+                                Cloud Computing
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800 print-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Core Skills
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Skill Category 1 -->
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                    <i class="fas fa-cloud text-primary-600 mr-2" aria-hidden="true"></i>
+                    Cloud & DevOps
+                </h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">AWS / Azure</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Docker / Kubernetes</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Terraform / IaC</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-primary-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Category 2 -->
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                    <i class="fas fa-code text-green-600 mr-2" aria-hidden="true"></i>
+                    Programming
+                </h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Python / Django</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">JavaScript / React</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">SQL / Database Design</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Category 3 -->
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                    <i class="fas fa-shield-alt text-red-600 mr-2" aria-hidden="true"></i>
+                    Security & Compliance
+                </h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Zero Trust Architecture</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-red-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">DevSecOps Practices</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-red-600 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">ISO 27001 Compliance</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Intermediate</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-red-600 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Category 4 -->
+            <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                    <i class="fas fa-users text-purple-600 mr-2" aria-hidden="true"></i>
+                    Leadership & Soft Skills
+                </h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Team Leadership</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Project Management</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Technical Writing</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View Full Skills Button -->
+        <div class="mt-12 text-center no-print">
+            <a href="/skills" 
+               class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg">
+                <i class="fas fa-th mr-2" aria-hidden="true"></i>
+                View Full Skills Portfolio
+                <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section id="certifications" class="py-20 bg-white dark:bg-gray-900 print-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Certifications & Awards
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Certification 1 -->
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-gray-800 dark:to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="w-14 h-14 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                        <i class="fas fa-cloud text-white text-xl" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">
+                            AWS Solutions Architect - Professional
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            Amazon Web Services
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            March 2025
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certification 2 -->
+            <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="w-14 h-14 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                        <i class="fas fa-shield-alt text-white text-xl" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">
+                            CISSP
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            (ISC)² Security Certification
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            January 2025
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certification 3 -->
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="w-14 h-14 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                        <i class="fas fa-dharmachakra text-white text-xl" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">
+                            Kubernetes Certified Administrator
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            Cloud Native Computing Foundation
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            February 2025
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certification 4 -->
+            <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-gray-800 dark:to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="flex items-start space-x-4">
+                    <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                        <i class="fab fa-google text-white text-xl" aria-hidden="true"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-1">
+                            Google Cloud Professional Architect
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            Google Cloud
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            December 2024
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View All Certifications Button -->
+        <div class="mt-12 text-center no-print">
+            <a href="/certifications" 
+               class="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-600 hover:text-white font-semibold rounded-lg transition-colors">
+                <i class="fas fa-certificate mr-2" aria-hidden="true"></i>
+                View All Certifications
+                <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Languages Section -->
+<section id="languages" class="py-20 bg-gray-50 dark:bg-gray-800 print-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Languages
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Language 1 -->
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl">🇬🇧</span>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">English</h3>
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 dark:bg-green-900 dark:bg-opacity-30 text-green-700 dark:text-green-300 text-sm font-semibold rounded-full">
+                        Professional
+                    </span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Full professional proficiency in speaking, writing, and technical communication
+                </p>
+            </div>
+            
+            <!-- Language 2 -->
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-3xl">🇻🇳</span>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">Vietnamese</h3>
+                    </div>
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full">
+                        Native
+                    </span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Native speaker with full fluency
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interests Section -->
+<section class="py-20 bg-white dark:bg-gray-900 no-print">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 font-heading">
+            Interests & Hobbies
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
+                    <i class="fas fa-book text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 font-medium">Reading</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
+                    <i class="fas fa-laptop-code text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 font-medium">Open Source</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
+                    <i class="fas fa-hiking text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 font-medium">Hiking</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
+                    <i class="fas fa-camera text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 font-medium">Photography</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white no-print">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">
+            Let's Work Together
+        </h2>
+        <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+            I'm always interested in hearing about new opportunities, challenging projects, 
+            and ways to collaborate with talented teams.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" 
+               class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                Contact Me
+            </a>
+            <a href="/projects" 
+               class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors">
+                <i class="fas fa-briefcase mr-2" aria-hidden="true"></i>
+                View My Work
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('.nav-tab').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerOffset = 120;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update active state
+                document.querySelectorAll('.nav-tab').forEach(tab => {
+                    tab.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
+                });
+                this.classList.add('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
+            }
+        });
+    });
+    
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navTabs = document.querySelectorAll('.nav-tab');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navTabs.forEach(tab => {
+            tab.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
+            
+            if (tab.getAttribute('href') === `#${current}`) {
+                tab.classList.add('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
+            }
+        });
+    });
+    
+    // Print optimization
+    window.addEventListener('beforeprint', () => {
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
+        });
+    });
+</script>
+{% endblock %}
