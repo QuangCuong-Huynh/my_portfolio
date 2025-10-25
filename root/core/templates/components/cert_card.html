@@ -1,0 +1,187 @@
+<!-- Certification Card Component -->
+<!-- Usage: {% include 'components/cert_card.html' with certification=cert_object %} -->
+
+<article class="cert-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 animate-slide-up">
+    <!-- Header with Icon -->
+    <div class="flex items-start space-x-4 mb-4">
+        <!-- Certification Icon -->
+        <div class="flex-shrink-0">
+            {% if certification.badge_image %}
+            <div class="w-16 h-16 rounded-lg overflow-hidden bg-white dark:bg-gray-700 p-2">
+                <img src="{{ certification.badge_image }}" 
+                     alt="{{ certification.title }} badge" 
+                     class="w-full h-full object-contain">
+            </div>
+            {% else %}
+            <div class="w-16 h-16 {{ certification.color|default:'bg-primary-500' }} rounded-lg flex items-center justify-center shadow-md">
+                <i class="{{ certification.icon|default:'fas fa-certificate' }} text-2xl text-white" aria-hidden="true"></i>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Certification Title & Issuer -->
+        <div class="flex-1 min-w-0">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1 leading-tight">
+                {{ certification.title }}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                {{ certification.issuer }}
+            </p>
+            
+            <!-- Date & Status -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+                <span class="flex items-center">
+                    <i class="far fa-calendar mr-1" aria-hidden="true"></i>
+                    {{ certification.date }}
+                </span>
+                
+                {% if certification.expiry_date %}
+                    {% if certification.is_expired %}
+                    <span class="flex items-center text-red-500">
+                        <i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i>
+                        Expired
+                    </span>
+                    {% elif certification.expires_soon %}
+                    <span class="flex items-center text-yellow-600 dark:text-yellow-500">
+                        <i class="fas fa-clock mr-1" aria-hidden="true"></i>
+                        Expires {{ certification.expiry_date }}
+                    </span>
+                    {% else %}
+                    <span class="flex items-center text-green-600 dark:text-green-500">
+                    <i class="fas fa-infinity mr-1" aria-hidden="true"></i>
+                    No expiration
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Credential ID -->
+    {% if certification.credential_id %}
+    <div class="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                Credential ID
+            </span>
+            <code class="text-xs text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded font-mono">
+                {{ certification.credential_id }}
+            </code>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Description (if available) -->
+    {% if certification.description %}
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-3">
+        {{ certification.description }}
+    </p>
+    {% endif %}
+    
+    <!-- Skills/Competencies -->
+    {% if certification.skills %}
+    <div class="mb-4">
+        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+            Skills Covered
+        </p>
+        <div class="flex flex-wrap gap-2">
+            {% for skill in certification.skills|slice:":4" %}
+            <span class="px-2 py-1 bg-primary-50 dark:bg-primary-900 dark:bg-opacity-20 text-primary-700 dark:text-primary-300 text-xs font-medium rounded">
+                {{ skill }}
+            </span>
+            {% endfor %}
+            {% if certification.skills|length > 4 %}
+            <span class="px-2 py-1 text-gray-500 dark:text-gray-400 text-xs">
+                +{{ certification.skills|length|add:"-4" }} more
+            </span>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Verification Status -->
+    {% if certification.verified %}
+    <div class="mb-4 p-3 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border-l-4 border-green-500 rounded">
+        <p class="text-xs text-green-800 dark:text-green-300 font-semibold flex items-center">
+            <i class="fas fa-shield-check mr-2" aria-hidden="true"></i>
+            Verified Credential
+        </p>
+    </div>
+    {% endif %}
+    
+    <!-- Action Buttons -->
+    <div class="flex space-x-2 mt-4">
+        {% if certification.credential_url %}
+        <a href="{{ certification.credential_url }}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="flex-1 text-center px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm hover:shadow-md">
+            <i class="fas fa-eye mr-2" aria-hidden="true"></i>
+            View Credential
+        </a>
+        {% endif %}
+        
+        {% if certification.certificate_file %}
+        <a href="{{ certification.certificate_file }}" 
+           download
+           class="flex-1 text-center px-4 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-colors">
+            <i class="fas fa-download mr-2" aria-hidden="true"></i>
+            Download
+        </a>
+        {% endif %}
+        
+        {% if not certification.credential_url and not certification.certificate_file %}
+        <button class="flex-1 text-center px-4 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-colors">
+            <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>
+            Details
+        </button>
+        {% endif %}
+    </div>
+    
+    <!-- Share/Verify Badge (optional) -->
+    {% if certification.shareable %}
+    <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <button class="share-cert-btn w-full text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center justify-center"
+                data-cert-id="{{ certification.id }}"
+                aria-label="Share certification">
+            <i class="fas fa-share-alt mr-2" aria-hidden="true"></i>
+            Share this certification
+        </button>
+    </div>
+    {% endif %}
+</article>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* Certification card hover effect */
+    .cert-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cert-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .cert-card:hover::before {
+        left: 100%;
+    }
+</style>500">
+                        <i class="fas fa-check-circle mr-1" aria-hidden="true"></i>
+                        Valid until {{ certification.expiry_date }}
+                    </span>
+                    {% endif %}
+                {% else %}
+                <span class="flex items-center text-green-600 dark:text-green-

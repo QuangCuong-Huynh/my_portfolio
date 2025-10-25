@@ -1,0 +1,445 @@
+<!-- Enhanced Navigation Header with Language & Theme Switch -->
+<nav class="sticky top-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-700" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0">
+                <a href="/" class="flex items-center group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary-500 to-accent-600 flex items-center justify-center transform transition-transform group-hover:scale-110 shadow-md">
+                        <i class="fas fa-code  text-base" aria-hidden="true"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-bold font-heading bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hidden sm:block">
+                        Portfolio
+                    </span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+                <a href="/" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if request.path == '/' %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-home mr-1" aria-hidden="true"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/about" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/about' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-user mr-1" aria-hidden="true"></i>
+                    <span>About</span>
+                </a>
+                <a href="/skills" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/skills' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-tools mr-1" aria-hidden="true"></i>
+                    <span>Skills</span>
+                </a>
+                <a href="/experience" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/experience' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-briefcase mr-1" aria-hidden="true"></i>
+                    <span>Experience</span>
+                </a>
+                <a href="/projects" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/projects' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-project-diagram mr-1" aria-hidden="true"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="/blog" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/blog' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-blog mr-1" aria-hidden="true"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="/certifications" 
+                   class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 {% if '/certifications' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-100 dark:bg-gray-800{% endif %}">
+                    <i class="fas fa-certificate mr-1" aria-hidden="true"></i>
+                    <span>Certs</span>
+                </a>
+                <a href="/contact" 
+                   class="nav-link px-3 py-2 text-sm font-medium  bg-primary-600 hover:bg-primary-700 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+                    <i class="fas fa-envelope mr-1" aria-hidden="true"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+
+            <!-- Desktop Controls (Theme + Language) -->
+            <div class="hidden lg:flex items-center space-x-2">
+                <!-- Language Switcher -->
+                <div class="relative" id="lang-dropdown-desktop">
+                    <button 
+                        class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        aria-label="Select language"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                        <span class="text-sm font-medium" id="current-lang-desktop">EN</span>
+                        <i class="fas fa-chevron-down text-xs" aria-hidden="true"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-40 rounded-lg shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 hidden" role="menu">
+                        <div class="py-1">
+                            <button class="lang-option flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-lang="en">
+                                <span class="fi fi-gb mr-2"></span>
+                                <span>English</span>
+                                <i class="fas fa-check ml-auto text-primary-600 hidden" aria-hidden="true"></i>
+                            </button>
+                            <button class="lang-option flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" data-lang="vi">
+                                <span class="mr-2">🇻🇳</span>
+                                <span>Tiếng Việt</span>
+                                <i class="fas fa-check ml-auto text-primary-600 hidden" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button 
+                    data-theme-toggle
+                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                    aria-label="Toggle dark mode">
+                    <i class="fas fa-sun dark:hidden" aria-hidden="true"></i>
+                    <i class="fas fa-moon hidden dark:block" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- Tablet Navigation (768px - 1024px) -->
+            <div class="hidden md:flex lg:hidden items-center space-x-1">
+                <a href="/" class="p-2 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors" title="Home">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+                <a href="/about" class="p-2 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors" title="About">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                </a>
+                <a href="/skills" class="p-2 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors" title="Skills">
+                    <i class="fas fa-tools" aria-hidden="true"></i>
+                </a>
+                <a href="/projects" class="p-2 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors" title="Projects">
+                    <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                </a>
+                <a href="/contact" class="p-2  bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors" title="Contact">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Tablet Controls -->
+                <button data-theme-toggle class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white" aria-label="Toggle theme">
+                    <i class="fas fa-sun dark:hidden" aria-hidden="true"></i>
+                    <i class="fas fa-moon hidden dark:block" aria-hidden="true"></i>
+                </button>
+                
+                <button id="tablet-menu-btn" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white" aria-label="More options">
+                    <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- Mobile menu button (< 768px) -->
+            <div class="md:hidden flex items-center space-x-2">
+                <!-- Mobile Theme Toggle -->
+                <button 
+                    data-theme-toggle
+                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white"
+                    aria-label="Toggle dark mode">
+                    <i class="fas fa-sun dark:hidden" aria-hidden="true"></i>
+                    <i class="fas fa-moon hidden dark:block" aria-hidden="true"></i>
+                </button>
+                
+                <!-- Hamburger Menu -->
+                <button 
+                    id="mobile-menu-btn"
+                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white transition-colors"
+                    aria-label="Toggle mobile menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <i class="fas fa-bars" id="menu-icon" aria-hidden="true"></i>
+                    <i class="fas fa-times hidden" id="close-icon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Menu (< 768px) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+        <div class="px-4 pt-4 pb-6 space-y-2">
+            <!-- Mobile Nav Links -->
+            <a href="/" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if request.path == '/' %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-home w-5" aria-hidden="true"></i>
+                <span class="ml-3">Home</span>
+            </a>
+            <a href="/about" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/about' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-user w-5" aria-hidden="true"></i>
+                <span class="ml-3">About / Resume</span>
+            </a>
+            <a href="/skills" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/skills' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-tools w-5" aria-hidden="true"></i>
+                <span class="ml-3">Skills</span>
+            </a>
+            <a href="/experience" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/experience' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-briefcase w-5" aria-hidden="true"></i>
+                <span class="ml-3">Experience</span>
+            </a>
+            <a href="/projects" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/projects' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-project-diagram w-5" aria-hidden="true"></i>
+                <span class="ml-3">Projects</span>
+            </a>
+            <a href="/blog" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/blog' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-blog w-5" aria-hidden="true"></i>
+                <span class="ml-3">Blog</span>
+            </a>
+            <a href="/certifications" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors {% if '/certifications' in request.path %}text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800{% endif %}">
+                <i class="fas fa-certificate w-5" aria-hidden="true"></i>
+                <span class="ml-3">Certifications</span>
+            </a>
+            <a href="/contact" 
+               class="mobile-nav-link flex items-center px-4 py-3 text-base font-medium  bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors">
+                <i class="fas fa-envelope w-5" aria-hidden="true"></i>
+                <span class="ml-3">Contact</span>
+            </a>
+
+            <!-- Mobile Language Selector -->
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                <p class="px-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                    Language / Ngôn ngữ
+                </p>
+                <button class="lang-option-mobile w-full flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" data-lang="en">
+                    <span class="fi fi-gb mr-3"></span>
+                    <span>English</span>
+                    <i class="fas fa-check ml-auto text-primary-600 hidden" aria-hidden="true"></i>
+                </button>
+                <button class="lang-option-mobile w-full flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors" data-lang="vi">
+                    <span class="mr-3">🇻🇳</span>
+                    <span>Tiếng Việt</span>
+                    <i class="fas fa-check ml-auto text-primary-600 hidden" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tablet Extended Menu -->
+    <div id="tablet-menu" class="hidden md:flex lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 w-full">
+            <div class="grid grid-cols-2 gap-2">
+                <a href="/experience" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
+                    <i class="fas fa-briefcase mr-2" aria-hidden="true"></i>
+                    <span>Experience</span>
+                </a>
+                <a href="/blog" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
+                    <i class="fas fa-blog mr-2" aria-hidden="true"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="/certifications" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
+                    <i class="fas fa-certificate mr-2" aria-hidden="true"></i>
+                    <span>Certifications</span>
+                </a>
+                <button class="lang-toggle-tablet flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
+                    <i class="fas fa-globe mr-2" aria-hidden="true"></i>
+                    <span id="current-lang-tablet">EN</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Enhanced Navigation with Multi-Device Support
+    document.addEventListener('DOMContentLoaded', () => {
+        // Language Manager
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'en';
+                this.init();
+            }
+
+            init() {
+                this.updateUI();
+                this.bindEvents();
+            }
+
+            updateUI() {
+                // Update desktop indicator
+                const desktopLang = document.getElementById('current-lang-desktop');
+                if (desktopLang) {
+                    desktopLang.textContent = this.currentLang.toUpperCase();
+                }
+
+                // Update tablet indicator
+                const tabletLang = document.getElementById('current-lang-tablet');
+                if (tabletLang) {
+                    tabletLang.textContent = this.currentLang.toUpperCase();
+                }
+
+                // Update checkmarks
+                document.querySelectorAll('.lang-option, .lang-option-mobile').forEach(btn => {
+                    const check = btn.querySelector('.fa-check');
+                    if (btn.dataset.lang === this.currentLang) {
+                        check.classList.remove('hidden');
+                    } else {
+                        check.classList.add('hidden');
+                    }
+                });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('language', lang);
+                this.updateUI();
+                
+                // Redirect to language-specific URL
+                const path = window.location.pathname;
+                if (lang === 'vi' && !path.startsWith('/vi')) {
+                    window.location.href = `/vi${path}`;
+                } else if (lang === 'en' && path.startsWith('/vi')) {
+                    window.location.href = path.replace('/vi', '');
+                }
+            }
+
+            bindEvents() {
+                // Desktop language dropdown
+                const dropdown = document.getElementById('lang-dropdown-desktop');
+                if (dropdown) {
+                    const button = dropdown.querySelector('button');
+                    const menu = dropdown.querySelector('[role="menu"]');
+
+                    button.addEventListener('click', () => {
+                        const isHidden = menu.classList.contains('hidden');
+                        menu.classList.toggle('hidden');
+                        button.setAttribute('aria-expanded', !isHidden);
+                    });
+
+                    // Close on outside click
+                    document.addEventListener('click', (e) => {
+                        if (!dropdown.contains(e.target)) {
+                            menu.classList.add('hidden');
+                            button.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }
+
+                // Language option clicks (desktop & mobile)
+                document.querySelectorAll('.lang-option, .lang-option-mobile').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        this.setLanguage(btn.dataset.lang);
+                    });
+                });
+
+                // Tablet language toggle
+                const tabletToggle = document.querySelector('.lang-toggle-tablet');
+                if (tabletToggle) {
+                    tabletToggle.addEventListener('click', () => {
+                        const newLang = this.currentLang === 'en' ? 'vi' : 'en';
+                        this.setLanguage(newLang);
+                    });
+                }
+            }
+        }
+
+        // Mobile Menu Manager
+        class MobileMenuManager {
+            constructor() {
+                this.mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                this.mobileMenu = document.getElementById('mobile-menu');
+                this.menuIcon = document.getElementById('menu-icon');
+                this.closeIcon = document.getElementById('close-icon');
+                this.isOpen = false;
+                this.init();
+            }
+
+            init() {
+                if (this.mobileMenuBtn && this.mobileMenu) {
+                    this.bindEvents();
+                }
+            }
+
+            bindEvents() {
+                this.mobileMenuBtn.addEventListener('click', () => this.toggle());
+
+                // Close on nav link click
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', () => this.close());
+                });
+
+                // Close on window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768 && this.isOpen) {
+                        this.close();
+                    }
+                });
+            }
+
+            toggle() {
+                this.isOpen ? this.close() : this.open();
+            }
+
+            open() {
+                this.mobileMenu.classList.remove('hidden');
+                this.menuIcon.classList.add('hidden');
+                this.closeIcon.classList.remove('hidden');
+                this.mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                this.isOpen = true;
+                document.body.style.overflow = 'hidden';
+            }
+
+            close() {
+                this.mobileMenu.classList.add('hidden');
+                this.menuIcon.classList.remove('hidden');
+                this.closeIcon.classList.add('hidden');
+                this.mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                this.isOpen = false;
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Tablet Menu Manager
+        class TabletMenuManager {
+            constructor() {
+                this.tabletMenuBtn = document.getElementById('tablet-menu-btn');
+                this.tabletMenu = document.getElementById('tablet-menu');
+                this.isOpen = false;
+                this.init();
+            }
+
+            init() {
+                if (this.tabletMenuBtn && this.tabletMenu) {
+                    this.bindEvents();
+                }
+            }
+
+            bindEvents() {
+                this.tabletMenuBtn.addEventListener('click', () => this.toggle());
+
+                // Close on window resize
+                window.addEventListener('resize', () => {
+                    if ((window.innerWidth < 768 || window.innerWidth >= 1024) && this.isOpen) {
+                        this.close();
+                    }
+                });
+
+                // Close on outside click
+                document.addEventListener('click', (e) => {
+                    if (!this.tabletMenu.contains(e.target) && !this.tabletMenuBtn.contains(e.target) && this.isOpen) {
+                        this.close();
+                    }
+                });
+            }
+
+            toggle() {
+                this.isOpen ? this.close() : this.open();
+            }
+
+            open() {
+                this.tabletMenu.classList.remove('hidden');
+                this.isOpen = true;
+            }
+
+            close() {
+                this.tabletMenu.classList.add('hidden');
+                this.isOpen = false;
+            }
+        }
+
+        // Initialize all managers
+        new LanguageManager();
+        new MobileMenuManager();
+        new TabletMenuManager();
+    });
+</script>

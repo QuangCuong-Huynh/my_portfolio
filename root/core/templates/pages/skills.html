@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-16">Professional Skills</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for skill in skills %}
+            <div class="skill-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-semibold mb-2">{{ skill.name }}</h3>
+                <div class="sfia-{{ skill.sfia_level }} px-3 py-1 rounded-full text-xs">
+                    {{ skill.get_sfia_level_display }}
+                </div>
+                <p class="text-sm text-gray-600 mt-4">{{ skill.description|truncatewords:20 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

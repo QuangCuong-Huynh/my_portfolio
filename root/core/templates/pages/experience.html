@@ -1,0 +1,541 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Professional Experience{% endblock %}
+
+{% block meta_description %}Comprehensive overview of my professional experience in software development, DevOps, cloud
+architecture, and technical leadership roles.{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Timeline styling */
+    .timeline {
+        position: relative;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom,
+                #3b82f6 0%,
+                #8b5cf6 50%,
+                #ec4899 100%);
+    }
+
+    @media (min-width: 768px) {
+        .timeline::before {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Timeline item positioning */
+    .timeline-item {
+        position: relative;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: 8px;
+        top: 30px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: white;
+        border: 4px solid #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+        .timeline-dot {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Fade in animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Stats counter animation */
+    .stat-number {
+        transition: all 0.3s ease;
+    }
+
+    /* Filter dropdown animation */
+    .filter-dropdown {
+        transition: all 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .filter-dropdown.active {
+        max-height: 500px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-heading mb-6">
+                Professional Experience
+            </h1>
+            <p class="text-lg sm:text-xl opacity-90 leading-relaxed mb-8">
+                A comprehensive journey through my career in software development, DevOps engineering,
+                and technical leadership. Each role showcases measurable impact and continuous growth.
+            </p>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+                    <div class="text-4xl font-bold mb-2">5+</div>
+                    <div class="text-sm opacity-80">Years Experience</div>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+                    <div class="text-4xl font-bold mb-2">{{ experiences|length }}</div>
+                    <div class="text-sm opacity-80">Positions</div>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+                    <div class="text-4xl font-bold mb-2">50+</div>
+                    <div class="text-sm opacity-80">Projects Led</div>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+                    <div class="text-4xl font-bold mb-2">8+</div>
+                    <div class="text-sm opacity-80">Teams Managed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter & View Options -->
+<section class="py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <!-- View Toggle -->
+            <div class="flex items-center space-x-4">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">View:</span>
+                <div class="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                    <button id="view-timeline"
+                        class="view-btn active px-4 py-2 text-sm font-medium rounded-md transition-colors"
+                        data-view="timeline">
+                        <i class="fas fa-stream mr-2" aria-hidden="true"></i>
+                        Timeline
+                    </button>
+                    <button id="view-cards" class="view-btn px-4 py-2 text-sm font-medium rounded-md transition-colors"
+                        data-view="cards">
+                        <i class="fas fa-th-large mr-2" aria-hidden="true"></i>
+                        Cards
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sort & Filter -->
+            <div class="flex items-center space-x-4">
+                <!-- Sort Dropdown -->
+                <div class="relative">
+                    <select id="sort-select"
+                        class="px-4 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer appearance-none">
+                        <option value="recent">Most Recent</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="company">By Company</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"
+                        aria-hidden="true"></i>
+                </div>
+
+                <!-- Filter Button -->
+                <button id="filter-toggle"
+                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-filter mr-2" aria-hidden="true"></i>
+                    Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Dropdown -->
+        <div id="filter-dropdown" class="filter-dropdown mt-4">
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Employment Type -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Employment Type</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Full-time</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Contract</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Freelance</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Industry -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Industry</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Technology</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">E-commerce</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600" checked>
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Finance</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Key Technologies -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Key Technologies</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Python/Django</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">AWS/Azure</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox"
+                                    class="filter-checkbox w-4 h-4 rounded border-gray-300 text-primary-600">
+                                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Kubernetes</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-6 space-x-3">
+                    <button id="clear-filters"
+                        class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                        Clear All
+                    </button>
+                    <button id="apply-filters"
+                        class="px-6 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline View -->
+<section id="timeline-view" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="timeline">
+            {% for experience in experiences %}
+            <div class="timeline-item mb-16 fade-in-up delay-{{ forloop.counter0 }}"></div>
+            <div class="timeline-item flex flex-col md:flex-row items-start md:items-center relative">
+                <!-- Timeline Dot -->
+                <div
+                    class="timeline-dot {% if experience.is_current %}bg-green-500 border-green-500 animate-pulse{% else %}bg-primary-600 border-primary-600{% endif %}">
+                    {% if experience.is_current %}
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Content Card -->
+                <div
+                    class="ml-16 md:ml-0 {% if forloop.counter0|divisibleby:2 %}md:mr-auto md:pr-8 md:text-right{% else %}md:ml-auto md:pl-8{% endif %} md:w-5/12">
+                    {% include 'components/experience_card.html' with experience=experience expanded=forloop.first %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-20">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full mb-4">
+                    <i class="fas fa-briefcase text-3xl text-gray-400" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No experience found</h3>
+                <p class="text-gray-600 dark:text-gray-400">Try adjusting your filters</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Cards View (Hidden by default) -->
+<section id="cards-view" class="hidden py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+            {% for experience in experiences %}
+            {% include 'components/experience_card.html' with experience=experience expanded=False %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Summary Section -->
+<section class="py-20 bg-white dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-heading">
+                Skills Gained Through Experience
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Throughout my career, I've developed expertise across multiple domains
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <!-- Skill Category 1 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-cloud text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">Cloud Architecture</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">AWS, Azure, GCP</p>
+            </div>
+
+            <!-- Skill Category 2 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-code-branch text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">DevOps</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">CI/CD, Docker, K8s</p>
+            </div>
+
+            <!-- Skill Category 3 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-code text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">Backend Dev</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Python, Node.js</p>
+            </div>
+
+            <!-- Skill Category 4 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-shield-alt text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">Security</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">DevSecOps, Zero Trust</p>
+            </div>
+
+            <!-- Skill Category 5 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-database text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">Databases</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">SQL, NoSQL</p>
+            </div>
+
+            <!-- Skill Category 6 -->
+            <div class="text-center group">
+                <div
+                    class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i class="fas fa-users text-3xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">Leadership</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Team Management</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/skills"
+                class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg">
+                <i class="fas fa-th mr-2" aria-hidden="true"></i>
+                View Full Skills Portfolio
+                <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Career Highlights Timeline -->
+<section class="py-20 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-heading">
+                Career Highlights
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+                Key milestones and achievements throughout my professional journey
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">2018</div>
+                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">Started Career</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Began as Software Engineer at Digital Solutions Inc
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">2020</div>
+                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">First Leadership Role</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Promoted to Full Stack Developer, led MVP
+                    development</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">2022</div>
+                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">Senior Technical Lead</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Led team of 8, modernized infrastructure</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">2025</div>
+                <h3 class="font-bold text-gray-900 dark:text-gray-100 mb-2">Current Focus</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Zero Trust architecture, DevSecOps excellence</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">
+            Ready to Add Value to Your Team?
+        </h2>
+        <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+            With proven experience in delivering high-impact solutions and leading technical teams,
+            I'm ready to tackle your next challenge.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact"
+                class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                Get In Touch
+            </a>
+            <a href="/about"
+                class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors">
+                <i class="fas fa-file-alt mr-2" aria-hidden="true"></i>
+                Download Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // View toggle functionality
+        const viewButtons = document.querySelectorAll('.view-btn');
+        const timelineView = document.getElementById('timeline-view');
+        const cardsView = document.getElementById('cards-view');
+
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const view = this.dataset.view;
+
+                // Update button states
+                viewButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'dark:bg-gray-600', 'text-primary-600', 'dark:text-primary-400');
+                    b.classList.add('text-gray-600', 'dark:text-gray-400');
+                });
+
+                this.classList.add('active', 'bg-white', 'dark:bg-gray-600', 'text-primary-600', 'dark:text-primary-400');
+                this.classList.remove('text-gray-600', 'dark:text-gray-400');
+
+                // Toggle views
+                if (view === 'timeline') {
+                    timelineView.classList.remove('hidden');
+                    cardsView.classList.add('hidden');
+                } else {
+                    timelineView.classList.add('hidden');
+                    cardsView.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Filter toggle
+        const filterToggle = document.getElementById('filter-toggle');
+        const filterDropdown = document.getElementById('filter-dropdown');
+
+        if (filterToggle) {
+            filterToggle.addEventListener('click', function () {
+                filterDropdown.classList.toggle('active');
+            });
+        }
+
+        // Apply filters
+        const applyFiltersBtn = document.getElementById('apply-filters');
+        if (applyFiltersBtn) {
+            applyFiltersBtn.addEventListener('click', function () {
+                // In real implementation, this would filter the experiences
+                filterDropdown.classList.remove('active');
+                console.log('Filters applied');
+            });
+        }
+
+        // Clear filters
+        const clearFiltersBtn = document.getElementById('clear-filters');
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-checkbox').forEach(cb => {
+                    cb.checked = true;
+                });
+            });
+        }
+
+        // Sort functionality
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function () {
+                // In real implementation, this would re-order the experiences
+                console.log('Sort by:', this.value);
+            });
+        }
+    });
+</script>
+{% endblock %}

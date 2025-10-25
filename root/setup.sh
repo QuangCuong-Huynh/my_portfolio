@@ -42,7 +42,9 @@ fi
 # 4. Database Migrations
 # -----------------------------
 echo "🗄️ Applying migrations..."
+python manage.py makemigrations 
 python manage.py migrate
+python manage.py check
 
 # -----------------------------
 # 5. Collect Static Files
@@ -55,3 +57,4 @@ python manage.py collectstatic --noinput
 # -----------------------------
 echo "✅ Setup complete! Starting development server..."
 python manage.py runserver
+

@@ -1,0 +1,863 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ project.name }} - Project{% endblock %}
+
+{% block meta_description %}{{ project.summary|truncatewords:30 }}{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Image gallery lightbox */
+    .gallery-item {
+        cursor: zoom-in;
+        transition: all 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+    
+    /* Sticky sidebar */
+    @media (min-width: 1024px) {
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+    }
+    
+    /* STAR section animations */
+    .star-card {
+        transition: all 0.3s ease;
+    }
+    
+    .star-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    /* Timeline connector */
+    .timeline-connector {
+        position: relative;
+    }
+    
+    .timeline-connector::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(59, 130, 246, 0.3), transparent);
+        transform: translateX(-50%);
+    }
+    
+    /* Code block styling */
+    pre code {
+        display: block;
+        overflow-x: auto;
+        padding: 1rem;
+        background: #1e293b;
+        border-radius: 0.5rem;
+        color: #e2e8f0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+    
+    /* Metric animation */
+    @keyframes countUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .metric-animate {
+        animation: countUp 0.6s ease-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 text-sm" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+                <li><a href="/" class="hover:underline opacity-80">Home</a></li>
+                <li><i class="fas fa-chevron-right text-xs opacity-60" aria-hidden="true"></i></li>
+                <li><a href="/projects" class="hover:underline opacity-80">Projects</a></li>
+                <li><i class="fas fa-chevron-right text-xs opacity-60" aria-hidden="true"></i></li>
+                <li class="font-semibold">{{ project.name }}</li>
+            </ol>
+        </nav>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <!-- Project Info -->
+            <div class="lg:col-span-2">
+                <!-- Status & Category Badges -->
+                <div class="flex flex-wrap gap-3 mb-6">
+                    {% if project.featured %}
+                    <span class="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-bold flex items-center shadow-lg">
+                        <i class="fas fa-star mr-2" aria-hidden="true"></i>
+                        Featured Project
+                    </span>
+                    {% endif %}
+                    
+                    {% if project.status %}
+                    <span class="px-4 py-2 {% if project.status == 'completed' %}bg-green-500{% elif project.status == 'ongoing' %}bg-blue-500{% else %}bg-gray-500{% endif %} text-white rounded-full text-sm font-semibold shadow-lg">
+                        {% if project.status == 'completed' %}
+                            <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
+                        {% elif project.status == 'ongoing' %}
+                            <i class="fas fa-sync-alt mr-2" aria-hidden="true"></i>
+                        {% endif %}
+                        {{ project.status|title }}
+                    </span>
+                    {% endif %}
+                    
+                    {% if project.category %}
+                    <span class="px-4 py-2 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-full text-sm font-semibold">
+                        <i class="fas fa-tag mr-2" aria-hidden="true"></i>
+                        {{ project.category }}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-heading mb-6">
+                    {{ project.name }}
+                </h1>
+                
+                <p class="text-xl opacity-90 leading-relaxed mb-8">
+                    {{ project.summary }}
+                </p>
+                
+                <!-- Meta Info -->
+                <div class="flex flex-wrap gap-6 text-sm opacity-90">
+                    {% if project.period %}
+                    <div class="flex items-center">
+                        <i class="far fa-calendar mr-2" aria-hidden="true"></i>
+                        <span>{{ project.period }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if project.client %}
+                    <div class="flex items-center">
+                        <i class="fas fa-building mr-2" aria-hidden="true"></i>
+                        <span>{{ project.client }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if project.role %}
+                    <div class="flex items-center">
+                        <i class="fas fa-user-tie mr-2" aria-hidden="true"></i>
+                        <span>{{ project.role }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if project.team_size %}
+                    <div class="flex items-center">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>
+                        <span>Team of {{ project.team_size }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="lg:col-span-1">
+                <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-6 shadow-2xl space-y-4">
+                    {% if project.live_url %}
+                    <a href="{{ project.live_url }}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="block w-full px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors text-center shadow-lg">
+                        <i class="fas fa-external-link-alt mr-2" aria-hidden="true"></i>
+                        View Live Demo
+                    </a>
+                    {% endif %}
+                    
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="block w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors text-center shadow-lg">
+                        <i class="fab fa-github mr-2" aria-hidden="true"></i>
+                        View on GitHub
+                    </a>
+                    {% endif %}
+                    
+                    {% if project.demo_video %}
+                    <button onclick="playVideo('{{ project.demo_video }}')"
+                            class="block w-full px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors text-center shadow-lg">
+                        <i class="fas fa-play mr-2" aria-hidden="true"></i>
+                        Watch Demo Video
+                    </button>
+                    {% endif %}
+                    
+                    <button onclick="shareProject()"
+                            class="block w-full px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors text-center">
+                        <i class="fas fa-share-alt mr-2" aria-hidden="true"></i>
+                        Share Project
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-16">
+                <!-- Project Overview -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 font-heading">
+                        Project Overview
+                    </h2>
+                    <div class="prose prose-lg dark:prose-invert max-w-none">
+                        {{ project.description|safe }}
+                    </div>
+                </div>
+                
+                <!-- Key Achievements/Results -->
+                {% if project.key_result %}
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 dark:bg-opacity-20 rounded-xl shadow-lg p-8 border-l-4 border-green-500">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                            <i class="fas fa-trophy text-white text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                                Key Result
+                            </h3>
+                            <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {{ project.key_result }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Metrics/Stats -->
+                {% if project.stats %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 font-heading">
+                        Impact Metrics
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {% for stat in project.stats %}
+                        <div class="metric-animate text-center p-6 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-700 dark:to-gray-700 rounded-xl">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                                {{ stat.value }}
+                            </div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">
+                                {{ stat.label }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- STAR Method (if available) -->
+                {% if project.star %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 font-heading">
+                        Project Case Study
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Situation -->
+                        <div class="star-card bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900 dark:to-red-800 dark:bg-opacity-20 rounded-xl p-6 border-l-4 border-red-500">
+                            <div class="flex items-start space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                                    <span class="text-white font-bold text-lg">S</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
+                                    Situation
+                                </h3>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {{ project.star.situation }}
+                            </p>
+                        </div>
+                        
+                        <!-- Task -->
+                        <div class="star-card bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 dark:bg-opacity-20 rounded-xl p-6 border-l-4 border-orange-500">
+                            <div class="flex items-start space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                                    <span class="text-white font-bold text-lg">T</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
+                                    Task
+                                </h3>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {{ project.star.task }}
+                            </p>
+                        </div>
+                        
+                        <!-- Action -->
+                        <div class="star-card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 dark:bg-opacity-20 rounded-xl p-6 border-l-4 border-blue-500">
+                            <div class="flex items-start space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                                    <span class="text-white font-bold text-lg">A</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
+                                    Action
+                                </h3>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {{ project.star.action }}
+                            </p>
+                        </div>
+                        
+                        <!-- Result -->
+                        <div class="star-card bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 dark:bg-opacity-20 rounded-xl p-6 border-l-4 border-green-500">
+                            <div class="flex items-start space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                                    <span class="text-white font-bold text-lg">R</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
+                                    Result
+                                </h3>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed font-semibold">
+                                {{ project.star.result }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Technical Implementation -->
+                {% if project.technical_details %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 font-heading flex items-center">
+                        <i class="fas fa-code text-primary-600 mr-3" aria-hidden="true"></i>
+                        Technical Implementation
+                    </h2>
+                    <div class="prose prose-lg dark:prose-invert max-w-none">
+                        {{ project.technical_details|safe }}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Challenges & Solutions -->
+                {% if project.challenges %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 font-heading flex items-center">
+                        <i class="fas fa-puzzle-piece text-purple-600 mr-3" aria-hidden="true"></i>
+                        Challenges & Solutions
+                    </h2>
+                    <div class="space-y-6">
+                        {% for challenge in project.challenges %}
+                        <div class="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50 dark:bg-purple-900 dark:bg-opacity-20 rounded-r-lg">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                                {{ challenge.title }}
+                            </h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <span class="text-sm font-semibold text-red-600 dark:text-red-400 uppercase tracking-wide">Challenge:</span>
+                                    <p class="text-gray-700 dark:text-gray-300 mt-1">{{ challenge.problem }}</p>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">Solution:</span>
+                                    <p class="text-gray-700 dark:text-gray-300 mt-1">{{ challenge.solution }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Image Gallery -->
+                {% if project.gallery %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 font-heading flex items-center">
+                        <i class="fas fa-images text-blue-600 mr-3" aria-hidden="true"></i>
+                        Project Gallery
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {% for image in project.gallery %}
+                        <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                            <img src="{{ image.url }}" 
+                                 alt="{{ image.caption|default:'Project screenshot' }}" 
+                                 class="w-full h-64 object-cover"
+                                 onclick="openLightbox('{{ image.url }}', '{{ image.caption }}')">
+                            {% if image.caption %}
+                            <div class="p-3 bg-gray-100 dark:bg-gray-700">
+                                <p class="text-sm text-gray-600 dark:text-gray-400">{{ image.caption }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Testimonial/Feedback -->
+                {% if project.testimonial %}
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 dark:bg-opacity-20 rounded-xl shadow-lg p-8 border-l-4 border-blue-500">
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-quote-left text-4xl text-blue-500 opacity-50" aria-hidden="true"></i>
+                        <div class="flex-1">
+                            <p class="text-xl text-gray-800 dark:text-gray-200 italic leading-relaxed mb-6">
+                                "{{ project.testimonial.quote }}"
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                {% if project.testimonial.avatar %}
+                                <img src="{{ project.testimonial.avatar }}" 
+                                     alt="{{ project.testimonial.author }}" 
+                                     class="w-12 h-12 rounded-full object-cover">
+                                {% endif %}
+                                <div>
+                                    <div class="font-bold text-gray-900 dark:text-gray-100">
+                                        {{ project.testimonial.author }}
+                                    </div>
+                                    <div class="text-sm text-gray-600 dark:text-gray-400">
+                                        {{ project.testimonial.position }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Lessons Learned -->
+                {% if project.lessons %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 font-heading flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-3" aria-hidden="true"></i>
+                        Lessons Learned
+                    </h2>
+                    <ul class="space-y-4">
+                        {% for lesson in project.lessons %}
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0" aria-hidden="true"></i>
+                            <span class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ lesson }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="lg:col-span-1">
+                <div class="sticky-sidebar space-y-8">
+                    <!-- Technologies Used -->
+                    {% if project.technologies %}
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-layer-group text-primary-600 mr-2" aria-hidden="true"></i>
+                            Technologies
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for tech in project.technologies %}
+                            <span class="px-3 py-1.5 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-600">
+                                {{ tech }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Project Links -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-link text-blue-600 mr-2" aria-hidden="true"></i>
+                            Quick Links
+                        </h3>
+                        <div class="space-y-3">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <i class="fas fa-external-link-alt w-5 mr-3" aria-hidden="true"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            {% endif %}
+                            
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <i class="fab fa-github w-5 mr-3" aria-hidden="true"></i>
+                                <span>Source Code</span>
+                            </a>
+                            {% endif %}
+                            
+                            {% if project.documentation_url %}
+                            <a href="{{ project.documentation_url }}" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <i class="fas fa-book w-5 mr-3" aria-hidden="true"></i>
+                                <span>Documentation</span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Team Members -->
+                    {% if project.collaborators %}
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-users text-purple-600 mr-2" aria-hidden="true"></i>
+                            Team
+                        </h3>
+                        <div class="space-y-3">
+                            {% for member in project.collaborators %}
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden">
+                                    {% if member.avatar %}
+                                    <img src="{{ member.avatar }}" alt="{{ member.name }}" class="w-full h-full object-cover">
+                                    {% else %}
+                                    <div class="w-full h-full flex items-center justify-center text-sm font-semibold text-white">
+                                        {{ member.name|slice:":1" }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+                                        {{ member.name }}
+                                    </div>
+                                    {% if member.role %}
+                                    <div class="text-xs text-gray-600 dark:text-gray-400">
+                                        {{ member.role }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Awards/Recognition -->
+                    {% if project.awards %}
+                    <div class="bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900 dark:to-amber-900 dark:bg-opacity-20 rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-award text-yellow-500 mr-2" aria-hidden="true"></i>
+                            Awards
+                        </h3>
+                        <ul class="space-y-2">
+                            {% for award in project.awards %}
+                            <li class="flex items-start text-sm text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-trophy text-yellow-500 mt-1 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                                <span>{{ award }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Share Project -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                            Share This Project
+                        </h3>
+                        <div class="flex space-x-3">
+                            <button onclick="shareOn('twitter')" 
+                                    class="flex-1 p-3 bg-blue-400 hover:bg-blue-500 text-white rounded-lg transition-colors"
+                                    aria-label="Share on Twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </button>
+                            <button onclick="shareOn('linkedin')" 
+                                    class="flex-1 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                                    aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            </button>
+                            <button onclick="shareOn('facebook')" 
+                                    class="flex-1 p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                                    aria-label="Share on Facebook">
+                                <i class="fab fa-facebook" aria-hidden="true"></i>
+                            </button>
+                            <button onclick="copyLink()" 
+                                    class="flex-1 p-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                                    aria-label="Copy link">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Projects -->
+                    {% if related_projects %}
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-project-diagram text-green-600 mr-2" aria-hidden="true"></i>
+                            Related Projects
+                        </h3>
+                        <div class="space-y-4">
+                            {% for related in related_projects|slice:":3" %}
+                            <a href="{% url 'project_detail' related.slug %}" 
+                               class="block group">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-700 flex-shrink-0">
+                                        {% if related.image %}
+                                        <img src="{{ related.image }}" 
+                                             alt="{{ related.name }}" 
+                                             class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                                        {% else %}
+                                        <div class="w-full h-full flex items-center justify-center">
+                                            <i class="fas fa-project-diagram text-gray-400" aria-hidden="true"></i>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate text-sm">
+                                            {{ related.name }}
+                                        </div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400 line-clamp-1">
+                                            {{ related.summary|truncatewords:10 }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation (Previous/Next Projects) -->
+<section class="py-12 bg-white dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row justify-between gap-6">
+            {% if previous_project %}
+            <a href="{% url 'project_detail' previous_project.slug %}" 
+               class="flex-1 group bg-gray-50 dark:bg-gray-900 rounded-xl p-6 hover:shadow-lg transition-all">
+                <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm mb-2">
+                    <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+                    <span>Previous Project</span>
+                </div>
+                <div class="font-bold text-lg text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {{ previous_project.name }}
+                </div>
+            </a>
+            {% else %}
+            <div class="flex-1"></div>
+            {% endif %}
+            
+            {% if next_project %}
+            <a href="{% url 'project_detail' next_project.slug %}" 
+               class="flex-1 group bg-gray-50 dark:bg-gray-900 rounded-xl p-6 hover:shadow-lg transition-all text-right">
+                <div class="flex items-center justify-end text-gray-600 dark:text-gray-400 text-sm mb-2">
+                    <span>Next Project</span>
+                    <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                </div>
+                <div class="font-bold text-lg text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {{ next_project.name }}
+                </div>
+            </a>
+            {% else %}
+            <div class="flex-1"></div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">
+            Interested in Similar Solutions?
+        </h2>
+        <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+            I'd love to discuss how I can help solve your technical challenges with similar approaches and methodologies.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" 
+               class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                Start a Conversation
+            </a>
+            <a href="/projects" 
+               class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+                Back to Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-90">
+    <div class="relative max-w-6xl w-full">
+        <button onclick="closeLightbox()" 
+                class="absolute top-4 right-4 w-12 h-12 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                aria-label="Close lightbox">
+            <i class="fas fa-times text-xl" aria-hidden="true"></i>
+        </button>
+        <img id="lightbox-image" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl">
+        <div id="lightbox-caption" class="mt-4 text-center text-white text-lg"></div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div id="video-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-90">
+    <div class="relative max-w-6xl w-full">
+        <button onclick="closeVideo()" 
+                class="absolute top-4 right-4 w-12 h-12 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                aria-label="Close video">
+            <i class="fas fa-times text-xl" aria-hidden="true"></i>
+        </button>
+        <div class="relative pt-[56.25%] bg-black rounded-lg overflow-hidden">
+            <iframe id="video-iframe" 
+                    src="" 
+                    class="absolute inset-0 w-full h-full" 
+                    frameborder="0" 
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Lightbox functionality
+    function openLightbox(imageUrl, caption) {
+        const modal = document.getElementById('lightbox-modal');
+        const image = document.getElementById('lightbox-image');
+        const captionEl = document.getElementById('lightbox-caption');
+        
+        image.src = imageUrl;
+        image.alt = caption || '';
+        captionEl.textContent = caption || '';
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+        const modal = document.getElementById('lightbox-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    
+    // Video modal functionality
+    function playVideo(videoUrl) {
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('video-iframe');
+        
+        // Convert YouTube URL to embed format
+        let embedUrl = videoUrl;
+        if (videoUrl.includes('youtube.com/watch')) {
+            const videoId = new URL(videoUrl).searchParams.get('v');
+            embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        } else if (videoUrl.includes('youtu.be/')) {
+            const videoId = videoUrl.split('youtu.be/')[1];
+            embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        iframe.src = embedUrl;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeVideo() {
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('video-iframe');
+        
+        iframe.src = '';
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    
+    // Share functionality
+    function shareProject() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).catch(err => console.log('Error sharing:', err));
+        } else {
+            copyLink();
+        }
+    }
+    
+    function shareOn(platform) {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        
+        let shareUrl;
+        switch(platform) {
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                break;
+            case 'linkedin':
+                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                break;
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                break;
+        }
+        
+        if (shareUrl) {
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    }
+    
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            // Show success notification
+            const btn = event.target.closest('button');
+            const icon = btn.querySelector('i');
+            icon.className = 'fas fa-check';
+            
+            setTimeout(() => {
+                icon.className = 'fas fa-link';
+            }, 2000);
+        });
+    }
+    
+    // Close modals on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+            closeVideo();
+        }
+    });
+    
+    // Close modals on outside click
+    document.getElementById('lightbox-modal')?.addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+    
+    document.getElementById('video-modal')?.addEventListener('click', function(e) {
+        if (e.target === this) closeVideo();
+    });
+    
+    // Animate metrics on scroll
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.metric-animate').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+    });
+</script>
+{% endblock %}
