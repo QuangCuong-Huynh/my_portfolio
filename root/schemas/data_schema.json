@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["site","profiles","skills","experience","projects","certifications"],
+  "properties": {
+    "site": {
+      "type": "object",
+      "required": ["metadata","social","navigation"],
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "required": ["title","author","description","language","version"],
+          "properties": {
+            "title": {"type": "string"},
+            "author": {"type": "string"},
+            "description": {"type": "string"},
+            "language": {"type": "string"},
+            "theme": {"type": "string"},
+            "version": {"type": "string"}
+          }
+        },
+        "social": {"type": "object"},
+        "navigation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label","path"],
+            "properties": {"label":{"type":"string"},"path":{"type":"string"},"icon":{"type":"string"}}
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","name","job_title","created_at","updated_at"],
+        "properties": {
+          "id":{"type":"string"},
+          "name":{"type":"string"},
+          "job_title":{"type":"string"},
+          "bio":{"type":"string"},
+          "summary":{"type":"string"},
+          "location":{"type":"string"},
+          "avatar":{"type":"string"},
+          "resume_pdf":{"type":"string"},
+          "created_at":{"type":"string","format":"date-time"},
+          "updated_at":{"type":"string","format":"date-time"}
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {"type":"object","required":["id","area","name"],"properties":{"id":{"type":"string"}}}
+    },
+    "experience": {"type":"array"},
+    "projects": {"type":"array"},
+    "certifications": {"type":"array"}
+  }
+}

@@ -1,0 +1,1131 @@
+[
+    {
+        "model": "core.sitesettings",
+        "pk": 1,
+        "fields": {
+            "site_title": "Quang Cuong Huynh | Information Systems Architect & DevSecOps Specialist",
+            "site_tagline": "",
+            "meta_keywords": "Information Systems Architect, Cloud Architecture, DevSecOps, Django Full Stack, Azure CAF, Security Compliance, Enterprise Automation",
+            "google_analytics_id": "G-DEFAULTID",
+            "contact_email": "contact@quangcuong.dev",
+            "contact_phone": "+84 123 456 7890",
+            "github_url": "https://github.com/quangcuong-huynh",
+            "linkedin_url": "https://linkedin.com/in/quangcuong-huynh",
+            "twitter_url": "https://twitter.com/quangcuong_h",
+            "enable_blog": true,
+            "enable_contact_form": true,
+            "maintenance_mode": false,
+            "is_active": true
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "001",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "Information Systems Architect | Cloud & DevOps | QA & Compliance",
+            "bio": "As an Information Systems Architect, Quang Cuong Huynh designs scalable, secure, and compliant cloud infrastructures that align with enterprise goals. With a foundation in DevSecOps and digital transformation, he focuses on bridging development, operations, and governance to build future-ready systems. His experience spans Azure CAF, container orchestration, and multi-cloud automation frameworks.",
+            "summary": "Architecting reliable cloud systems with DevSecOps and compliance-by-design.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_architect.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "002",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "Security Architect | Governance, Risk & Compliance (GRC)",
+            "bio": "Quang Cuong Huynh leads cybersecurity and compliance architecture for cloud and hybrid systems. Combining DevSecOps, threat modeling, and regulatory alignment, he ensures organizations achieve resilient infrastructure that meets ISO, NIST, and CIS standards. His work integrates automation with security frameworks to maintain visibility and trust at scale.",
+            "summary": "Securing enterprise systems through automation and risk-driven design.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_security.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "003",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "Full-Stack Developer | Python & Django Engineer",
+            "bio": "A results-driven software engineer specializing in Python, Django, and modern web architecture. Quang builds performant, maintainable systems following TDD/BDD principles and scalable design patterns. He focuses on integrating secure backend APIs with clean, responsive frontends using React and soft-minimalist UI principles.",
+            "summary": "Building secure, elegant full-stack web applications from architecture to delivery.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_fullstack.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "004",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "Data & Automation Engineer | Cloud Analytics",
+            "bio": "Blending system architecture with data engineering, Quang Cuong Huynh designs automated data pipelines and observability platforms across multi-cloud environments. He uses Python, SQL, and containerized workflows to optimize analytics, logging, and reporting pipelines for enterprise operations and performance visibility.",
+            "summary": "Automating data and insight delivery through scalable cloud pipelines.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_data.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "005",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "QA & Reliability Engineer | DevOps Test Automation",
+            "bio": "Quang Cuong Huynh specializes in ensuring software reliability through continuous testing and automation. His work integrates CI/CD, containerized test environments, and behavior-driven frameworks. He focuses on system observability, fault injection, and zero-downtime deployment validation to maintain enterprise-grade reliability.",
+            "summary": "Engineering reliability and quality automation into every deployment cycle.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_qa.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.profile",
+        "pk": "006",
+        "fields": {
+            "name": "Quang Cuong Huynh",
+            "job_title": "Information Systems Architect | Storyteller of Systems and Human Insight",
+            "bio": "Across his career, Quang Cuong Huynh has walked the fine line between code and consciousness — from architecting enterprise clouds to understanding how systems shape human experience. Trained in cloud architecture, DevSecOps, and quality assurance, he approaches technology not merely as a collection of tools, but as an evolving ecosystem where resilience, logic, and empathy intertwine.\n\nQuang sees design patterns as philosophies — blueprints of understanding that mirror human thinking. Whether he’s building scalable platforms, integrating compliance frameworks, or leading digital transformation, his purpose remains constant: to create systems that are transparent, trustworthy, and humane.\n\nIn his view, the future of technology belongs not just to those who automate, but to those who comprehend — those who can craft systems that reflect human clarity amid algorithmic noise.",
+            "summary": "Blending architecture, philosophy, and clarity to build systems that serve both logic and humanity.",
+            "location": "Ho Chi Minh City, Vietnam",
+            "profile_image": "/assets/images/avatar_story.jpg",
+            "resume_pdf": "/assets/resume_quangcuong_story.pdf",
+            "created_at": "2025-01-01T00:00:00Z",
+            "updated_at": "2025-10-16T00:00:00Z"
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 1,
+        "fields": {
+            "name": "Cloud & DevOps",
+            "slug": "cloud-devops",
+            "icon": "fas fa-cloud",
+            "color": "bg-sky-500",
+            "order": 1
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 2,
+        "fields": {
+            "name": "Backend Systems & API Engineering",
+            "slug": "backend-systems",
+            "icon": "fas fa-server",
+            "color": "bg-green-500",
+            "order": 2
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 3,
+        "fields": {
+            "name": "Data Engineering & Analytics",
+            "slug": "data-analytics",
+            "icon": "fas fa-database",
+            "color": "bg-amber-500",
+            "order": 3
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 4,
+        "fields": {
+            "name": "Frontend Engineering & UI Systems",
+            "slug": "frontend-engineering",
+            "icon": "fas fa-laptop-code",
+            "color": "bg-pink-400",
+            "order": 4
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 5,
+        "fields": {
+            "name": "Security, Compliance & DevSecOps",
+            "slug": "security-compliance",
+            "icon": "fas fa-shield-alt",
+            "color": "bg-red-500",
+            "order": 5
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 6,
+        "fields": {
+            "name": "QA & Test Automation",
+            "slug": "systems-architecture",
+            "icon": "fas fa-diagram-project",
+            "color": "bg-indigo-500",
+            "order": 6
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 7,
+        "fields": {
+            "name": "Emerging Technologies & Research",
+            "slug": "emerging-research",
+            "icon": "fas fa-rocket",
+            "color": "bg-purple-600",
+            "order": 7
+        }
+    },
+    {
+        "model": "core.skillarea",
+        "pk": 8,
+        "fields": {
+            "name": "Digital Design & UX Systems",
+            "slug": "digital-design",
+            "icon": "fas fa-palette",
+            "color": "bg-emerald-400",
+            "order": 8
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": "001",
+        "fields": {
+            "area": "1",
+            "name": "Cloud Architecture & Infrastructure as Code",
+            "slug": "cloud-architecture-iac",
+            "skills": "Azure (CAF, Bicep, ARM Templates), AWS (EC2, Lambda, CloudFormation), Google Cloud Platform (GKE, Cloud Run), Terraform & Terragrunt, Kubernetes, Docker, OpenShift",
+            "sfia_level": "L5",
+            "industry_level": "Lead Architect",
+            "sector": "Enterprise & Public Cloud",
+            "years_experience": 7,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "cloud",
+                "devops",
+                "terraform",
+                "azure",
+                "aws",
+                "kubernetes"
+            ],
+            "is_featured": true,
+            "order": 1
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": "002",
+        "fields": {
+            "area": "5",
+            "name": "Zero Trust Architecture & Governance",
+            "slug": "zero-trust-architecture",
+            "skills": "Azure ZTA & Policy Frameworks, Identity & Access Management (IAM), Security Information & Event Management (SIEM), Threat Modeling & Risk Analysis, NIST, CIS, ISO27001 Compliance",
+            "sfia_level": "L5",
+            "industry_level": "Principal Architect",
+            "sector": "Security & Risk Management",
+            "years_experience": 6,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "security",
+                "compliance",
+                "zero-trust",
+                "risk",
+                "governance"
+            ],
+            "is_featured": true,
+            "order": 2
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": "003",
+        "fields": {
+            "area": "2",
+            "name": "Full-Stack Development (Django, React, TypeScript)",
+            "slug": "full-stack-development",
+            "skills": "Python (Django, FastAPI), JavaScript/TypeScript (React, Node.js), RESTful APIs, GraphQL, Test-Driven Development (TDD/BDD), SQLite, PostgreSQL, Redis",
+            "sfia_level": "L4",
+            "industry_level": "Senior Developer",
+            "sector": "Software & Web Engineering",
+            "years_experience": 6,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "python",
+                "django",
+                "react",
+                "web",
+                "api"
+            ],
+            "is_featured": true,
+            "order": 3
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": "004",
+        "fields": {
+            "area": "3",
+            "name": "Data Engineering & Observability Automation",
+            "slug": "data-engineering-observability automation",
+            "skills": "ETL Pipelines (Airflow, Prefect), Monitoring (Prometheus, Grafana), Log Analytics (Elastic Stack, Loki), SQL Optimization & Indexing, Python Automation & Orchestration",
+            "sfia_level": "L4",
+            "industry_level": "Senior Engineer",
+            "sector": "Data Infrastructure",
+            "years_experience": 5,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "data",
+                "observability",
+                "automation",
+                "analytics",
+                "logging"
+            ],
+            "is_featured": true,
+            "order": 4
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": "005",
+        "fields": {
+            "area": "6",
+            "name": "Quality Engineering & Continuous Testing",
+            "slug": "quality-engineering-testing",
+            "skills": "Pytest, Jest, Cypress, CI/CD Pipeline Integration, Unit, Integration, and E2E Testing, Performance & Load Testing, Static Analysis and Security Scanning",
+            "sfia_level": "L4",
+            "industry_level": "Senior QA Engineer",
+            "sector": "Software Quality & Reliability",
+            "years_experience": 6,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "qa",
+                "testing",
+                "ci-cd",
+                "automation",
+                "reliability"
+            ],
+            "is_featured": true,
+            "order": 5
+        }
+    },
+    {
+        "model": "core.experience",
+        "pk": "001",
+        "fields": {
+            "role": "Information Systems Architect",
+            "company": "TechCorp Global Systems",
+            "company_logo": "/assets/images/companies/techcorp.png",
+            "company_website": "https://techcorp.com",
+            "location": "Ho Chi Minh City, Vietnam (Hybrid)",
+            "employment_type": "Full-time",
+            "start_date": "2022-01-01",
+            "end_date": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "situation": "The enterprise faced operational fragmentation across multi-cloud platforms, causing governance blind spots and rising security incidents during digital transformation.",
+            "task": "Architect a unified, secure, and compliant multi-cloud foundation aligning with Azure Cloud Adoption Framework (CAF) and NIST Zero Trust principles.",
+            "action": "Designed cloud governance blueprints with IaC using Terraform and Bicep, built automated guardrails via Azure Policy & Sentinel, implemented GitOps pipelines for infrastructure drift detection, and led workshops to train DevSecOps teams on compliance-by-design.",
+            "result": "Reduced audit preparation time by 70%, achieved continuous compliance coverage (CIS, NIST), and improved deployment reliability to 99.95% across 4 environments.",
+            "responsibilities": [
+                "Design and govern enterprise multi-cloud architectures",
+                "Implement Zero Trust security models aligned with NIST/CIS",
+                "Lead DevSecOps transformation and IaC automation",
+                "Mentor engineers in architecture and governance frameworks"
+            ],
+            "technologies": [
+                "Azure CAF",
+                "Terraform",
+                "Kubernetes",
+                "Azure Policy",
+                "GitLab CI/CD",
+                "Prometheus/Grafana"
+            ],
+            "achievements": [
+                "70% faster compliance audits",
+                "99.95% uptime reliability",
+                "Multi-cloud architecture modernization"
+            ],
+            "order": 1
+        }
+    },
+    {
+        "model": "core.experience",
+        "pk": "002",
+        "fields": {
+            "role": "DevSecOps Architect",
+            "company": "FinServe Cloud Solutions",
+            "company_logo": "/assets/images/companies/finserve.png",
+            "company_website": "https://finservecloud.com",
+            "location": "Singapore (Remote)",
+            "employment_type": "Full-time",
+            "start_date": "2020-03-01",
+            "end_date": "2021-12-31",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "situation": "A regulated fintech startup faced deployment bottlenecks and inconsistent security enforcement across CI/CD pipelines during rapid product scaling.",
+            "task": "Integrate end-to-end DevSecOps pipelines to automate testing, scanning, and deployment with policy enforcement and visibility.",
+            "action": "Built containerized CI/CD pipelines with GitLab and Kubernetes runners, integrated SAST/DAST security scanning, automated compliance tests with OpenSCAP, and developed dashboards for release quality metrics.",
+            "result": "Deployment cycle reduced from 6 hours to 25 minutes, 80% of manual security checks automated, and passed ISO 27001 audit with zero critical findings.",
+            "responsibilities": [
+                "Develop CI/CD automation for regulated workloads",
+                "Embed security testing into pipelines (SAST, DAST, IAC scan)",
+                "Optimize release workflows and performance monitoring",
+                "Collaborate with compliance teams for audit readiness"
+            ],
+            "technologies": [
+                "GitLab CI",
+                "Docker",
+                "Kubernetes",
+                "SonarQube",
+                "Trivy",
+                "Prometheus"
+            ],
+            "achievements": [
+                "6→0.4 hour deployment time",
+                "80% automated security coverage",
+                "Zero audit findings (ISO 27001)"
+            ],
+            "order": 2
+        }
+    },
+    {
+        "model": "core.experience",
+        "pk": "003",
+        "fields": {
+            "role": "Full-Stack Developer",
+            "company": "EduSoft Learning Technologies",
+            "company_logo": "/assets/images/companies/edusoft.png",
+            "company_website": "https://edusoft.io",
+            "location": "Remote",
+            "employment_type": "Contract",
+            "start_date": "2018-05-01",
+            "end_date": "2020-02-28",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "situation": "The platform needed a modernized architecture to scale globally, replacing a legacy PHP backend with a modern stack.",
+            "task": "Rebuild the platform using a secure, modular full-stack architecture to support millions of learning sessions monthly.",
+            "action": "Developed RESTful APIs in Django with PostgreSQL, implemented async caching with Redis, built responsive React frontends, and established CI pipelines for automated testing and deployment on AWS.",
+            "result": "Improved page load speed by 65%, increased session reliability to 99.9%, and enabled 300% user growth post-launch.",
+            "responsibilities": [
+                "Full-stack development using Django and React",
+                "Database optimization and migration",
+                "Implement CI/CD pipelines for rapid release",
+                "Ensure code quality and scalability"
+            ],
+            "technologies": [
+                "Python",
+                "Django",
+                "React",
+                "PostgreSQL",
+                "Redis",
+                "AWS"
+            ],
+            "achievements": [
+                "65% faster performance",
+                "99.9% reliability",
+                "3× user base growth"
+            ],
+            "order": 3
+        }
+    },
+    {
+        "model": "core.experience",
+        "pk": "004",
+        "fields": {
+            "role": "QA & Reliability Engineer",
+            "company": "NovaTech Digital",
+            "company_logo": "/assets/images/companies/novatech.png",
+            "company_website": "https://novatech.ai",
+            "location": "Ho Chi Minh City, Vietnam",
+            "employment_type": "Full-time",
+            "start_date": "2016-06-01",
+            "end_date": "2018-04-30",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "situation": "Frequent production outages were caused by inadequate regression testing and lack of observability during deployment.",
+            "task": "Establish automated test pipelines and introduce reliability engineering practices.",
+            "action": "Built CI-integrated test suites with Pytest and Cypress, developed synthetic monitoring scripts, and designed dashboards for SLA tracking using Grafana and Loki.",
+            "result": "Regression incidents dropped by 75%, deployment confidence increased significantly, and SLA compliance improved to 99.8%.",
+            "responsibilities": [
+                "Develop and integrate automated test frameworks",
+                "Monitor system health and performance trends",
+                "Collaborate with dev teams to harden release processes"
+            ],
+            "technologies": [
+                "Pytest",
+                "Cypress",
+                "Grafana",
+                "Loki",
+                "Jenkins"
+            ],
+            "achievements": [
+                "75% reduction in regressions",
+                "99.8% SLA compliance"
+            ],
+            "order": 4
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": "001",
+        "fields": {
+            "slug": "django-mvvm-enterprise-framework",
+            "title": "Django MVVM Enterprise Framework",
+            "summary": "A modular full-stack MVVM Django architecture integrating TDD/BDD, CI/CD, and DevSecOps principles.",
+            "thumbnail": "/assets/images/projects/django-mvvm-thumb.jpg",
+            "category": null,
+            "is_ongoing": true,
+            "start_date": "2025-09-01",
+            "end_date": null,
+            "role": "Lead Developer & Architect",
+            "team_size": 1,
+            "client": null,
+            "situation": "Needed a reusable full-stack scaffold to accelerate Django project setup and testing while maintaining secure MVVM separation.",
+            "task": "Design an enterprise-ready Django architecture template with integrated testing, security, and environment setup automation.",
+            "action": "Implemented base apps structure, automated environment setup scripts (setup.sh, error handling), and CI/CD deployment workflow with Docker. Created reusable template loaders, views, and CRUD interfaces for SQLite data models.",
+            "result": "Reduced new project setup time from 2 days to under 2 hours, improved test coverage by 85%, and provided reproducible secure deployment pipelines.",
+            "technologies": [
+                "Django",
+                "SQLite",
+                "React",
+                "Docker",
+                "Pytest",
+                "GitLab CI/CD"
+            ],
+            "github_link": "https://github.com/quangcuong-huynh/django-mvvm-framework",
+            "demo_link": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "django",
+                "mvvm",
+                "devsecops",
+                "architecture"
+            ],
+            "order": 1
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 1,
+        "fields": {
+            "project": "001",
+            "image": "/assets/images/projects/django-mvvm-1.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 2,
+        "fields": {
+            "project": "001",
+            "image": "/assets/images/projects/django-mvvm-2.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": "002",
+        "fields": {
+            "slug": "azure-caf-zta-blueprint",
+            "title": "Azure CAF Zero Trust Blueprint (NIST & CIS Alignment)",
+            "summary": "Implementation of Azure Cloud Adoption Framework with Zero Trust Architecture aligned to NIST and CIS blueprints.",
+            "thumbnail": "/assets/images/projects/azure-zta-thumb.jpg",
+            "category": null,
+            "is_ongoing": true,
+            "start_date": "2025-07-01",
+            "end_date": null,
+            "role": "Cloud & Security Architect",
+            "team_size": 2,
+            "client": "Enterprise Cloud Governance Lab",
+            "situation": "Needed unified Zero Trust policies across hybrid Azure workloads following NIST and CIS frameworks.",
+            "task": "Implement IaC-driven secure cloud environment using CAF blueprints, Zero Trust principles, and continuous compliance pipelines.",
+            "action": "Developed Azure blueprints with Bicep/Terraform, enforced guardrails via Azure Policy and Defender for Cloud, and integrated compliance scans into CI/CD.",
+            "result": "Established repeatable ZTA-ready topology, reduced manual provisioning by 80%, and improved compliance visibility across multi-tenant workloads.",
+            "technologies": [
+                "Azure CAF",
+                "Terraform",
+                "Bicep",
+                "Microsoft Sentinel",
+                "Azure Policy",
+                "GitHub Actions"
+            ],
+            "github_link": "https://github.com/quangcuong-huynh/azure-caf-zta-blueprint",
+            "demo_link": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "azure",
+                "zero-trust",
+                "security",
+                "cloud",
+                "iac"
+            ],
+            "order": 2
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 3,
+        "fields": {
+            "project": "002",
+            "image": "/assets/images/projects/azure-zta-1.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 4,
+        "fields": {
+            "project": "002",
+            "image": "/assets/images/projects/azure-zta-2.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": "003",
+        "fields": {
+            "slug": "security-onion-lab",
+            "title": "Security Onion Enterprise SOC Lab",
+            "summary": "Design and deployment of Security Onion 2.x for enterprise-level threat detection, logging, and forensics.",
+            "thumbnail": "/assets/images/projects/security-onion-thumb.jpg",
+            "category": null,
+            "is_ongoing": true,
+            "start_date": "2024-08-01",
+            "end_date": "2025-03-01",
+            "role": "Security Engineer & SOC Architect",
+            "team_size": 1,
+            "client": "Internal Research Lab",
+            "situation": "Needed a local SOC environment for testing threat detection and incident response automation.",
+            "action": "Configured Zeek and Suricata sensors, integrated Elastic and Wazuh for event correlation, and automated alerting workflows via Fleet and Slack API.",
+            "result": "Built a reusable SOC sandbox adopted by 3 internal teams for simulation and training, reducing alert triage time by 60%.",
+            "technologies": [
+                "Security Onion 2",
+                "Elastic Stack",
+                "Zeek",
+                "Wazuh",
+                "Docker",
+                "Grafana"
+            ],
+            "github_link": "https://github.com/quangcuong-huynh/security-onion-lab",
+            "demo_link": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "security-onion",
+                "soc",
+                "siem",
+                "monitoring",
+                "forensics"
+            ],
+            "order": 3
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 5,
+        "fields": {
+            "project": "003",
+            "image": "/assets/images/projects/security-onion-1.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 6,
+        "fields": {
+            "project": "003",
+            "image": "/assets/images/projects/security-onion-2.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": "004",
+        "fields": {
+            "slug": "hrnp-galactic-navigation-protocol",
+            "title": "Hierarchical Relative Navigation Protocol (HRNP)",
+            "summary": "Design of a structured YAML-based interstellar navigation message framework integrating HRNP, BSTP, and BSCP protocols.",
+            "thumbnail": "/assets/images/projects/hrnp-thumb.jpg",
+            "category": null,
+            "is_ongoing": true,
+            "start_date": "2025-03-01",
+            "end_date": null,
+            "role": "Systems Architect & Protocol Designer",
+            "team_size": 1,
+            "client": "Creative Research Project",
+            "situation": "Needed a consistent technical protocol for interstellar navigation that could logically exist within a hard-sci-fi setting.",
+            "task": "Design a structured message system balancing scientific plausibility with narrative adaptability.",
+            "action": "Created HRNP structure with coordinate hierarchy, Bayercentric pathing (BSTP/BSCP), gravitational data, and cruise/FTL travel estimations in YAML and binary formats.",
+            "result": "Published an open specification for use in creative works and simulation design, gaining adoption by several AI storytelling prototypes.",
+            "technologies": [
+                "YAML",
+                "Python",
+                "Data Modeling",
+                "Protocol Design"
+            ],
+            "github_link": "https://github.com/quangcuong-huynh/hrnp-protocol",
+            "demo_link": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "navigation",
+                "protocol",
+                "sci-fi",
+                "yaml",
+                "systems-design"
+            ],
+            "order": 4
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 7,
+        "fields": {
+            "project": "004",
+            "image": "/assets/images/projects/hrnp-1.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 8,
+        "fields": {
+            "project": "004",
+            "image": "/assets/images/projects/hrnp-2.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": "005",
+        "fields": {
+            "slug": "cyber-analog-mythos",
+            "title": "Cyber-Analog Mythos: 'Cửu Đạo Tu Trí' & Digital Gnosis Archive",
+            "summary": "An interactive literary-technical project merging Cthulhu-inspired grimdark science fiction with system philosophy and spiritual intelligence frameworks.",
+            "thumbnail": "/assets/images/projects/cyber-analog-mythos-thumb.jpg",
+            "category": null,
+            "is_ongoing": true,
+            "start_date": "2024-01-01",
+            "end_date": null,
+            "role": "Author, Systems Designer & Archivist",
+            "team_size": 1,
+            "client": "Personal Creative Endeavor",
+            "situation": "Sought to explore the intersection of technology, spirituality, and narrative through a unique mythos blending sci-fi and philosophical themes.",
+            "task": "Create a multi-layered digital archive and storytelling framework that embodies cyber-analog concepts and cultivation paths.",
+            "action": "Authored serialized stories, designed knowledge hierarchies in JSON format, and developed symbolic logic systems representing the Nine Paths of Intelligence.",
+            "result": "Built a growing digital archive with over 100 interconnected entries, inspiring discussions on technology and spirituality in online communities.",
+            "technologies": [
+                "JSON",
+                "Creative Writing",
+                "Data Modeling",
+                "Philosophical Systems"
+            ],
+            "github_link": "https://github.com/quangcuong-huynh/hrnp-protocol",
+            "demo_link": null,
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "tags": [
+                "mythos",
+                "cyber-analog",
+                "spirituality",
+                "sci-fi",
+                "data-archive"
+            ],
+            "order": 5
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 9,
+        "fields": {
+            "project": "005",
+            "image": "/assets/images/projects/cyber-analog-1.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.projectimage",
+        "pk": 10,
+        "fields": {
+            "project": "005",
+            "image": "/assets/images/projects/cyber-analog-2.jpg",
+            "caption": ""
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "001",
+        "fields": {
+            "title": "AWS Certified Solutions Architect – Professional",
+            "issuing_authority": "Amazon Web Services",
+            "authority_website": "https://aws.amazon.com/certification/",
+            "issue_date": "2025-03-15",
+            "expiry_date": "2028-03-15",
+            "credential_id": "AWS-SAP-2025-1987",
+            "credential_url": "https://www.credly.com/badges/example",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-cloud",
+            "color_class": "bg-orange-500",
+            "skills": [
+                "cloud-architecture",
+                "aws",
+                "infrastructure",
+                "devops"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "002",
+        "fields": {
+            "title": "Certified Information Systems Security Professional (CISSP)",
+            "issuing_authority": "(ISC)²",
+            "authority_website": "https://www.isc2.org/Certifications/CISSP",
+            "issue_date": "2025-01-10",
+            "expiry_date": null,
+            "credential_id": "CISSP-2025-4492",
+            "credential_url": "https://www.isc2.org/verify",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-shield-alt",
+            "color_class": "bg-red-500",
+            "skills": [
+                "security",
+                "risk-management",
+                "governance",
+                "compliance"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "003",
+        "fields": {
+            "title": "Microsoft Certified: Azure Solutions Architect Expert",
+            "issuing_authority": "Microsoft",
+            "authority_website": "https://learn.microsoft.com/en-us/certifications/azure-solutions-architect/",
+            "issue_date": "2024-10-01",
+            "expiry_date": "2027-10-01",
+            "credential_id": "AZ-305-2024-0217",
+            "credential_url": "https://learn.microsoft.com/en-us/users/example/certifications/azure-solutions-architect",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-cubes",
+            "color_class": "bg-blue-500",
+            "skills": [
+                "azure",
+                "architecture",
+                "governance",
+                "cloud-design"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "004",
+        "fields": {
+            "title": "HashiCorp Certified: Terraform Associate",
+            "issuing_authority": "HashiCorp",
+            "authority_website": "https://www.hashicorp.com/certification/terraform-associate",
+            "issue_date": "2024-07-15",
+            "expiry_date": "2026-07-15",
+            "credential_id": "HC-TF-2024-1173",
+            "credential_url": "https://www.hashicorp.com/verify",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-code-branch",
+            "color_class": "bg-purple-500",
+            "skills": [
+                "iac",
+                "terraform",
+                "automation",
+                "cloud-provisioning"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "005",
+        "fields": {
+            "title": "Certified DevSecOps Professional (CDP)",
+            "issuing_authority": "Practical DevSecOps",
+            "authority_website": "https://www.practical-devsecops.com/certified-devsecops-professional/",
+            "issue_date": "2025-06-01",
+            "expiry_date": "2028-06-01",
+            "credential_id": "CDP-2025-0791",
+            "credential_url": "https://www.practical-devsecops.com/verify",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-lock",
+            "color_class": "bg-green-500",
+            "skills": [
+                "devsecops",
+                "automation",
+                "ci-cd",
+                "security-testing"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "006",
+        "fields": {
+            "title": "Certified Kubernetes Administrator (CKA)",
+            "issuing_authority": "The Linux Foundation",
+            "authority_website": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+            "issue_date": "2024-11-01",
+            "expiry_date": "2027-11-01",
+            "credential_id": "CKA-2024-5662",
+            "credential_url": "https://www.cncf.io/certification/cka/",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-network-wired",
+            "color_class": "bg-teal-500",
+            "skills": [
+                "kubernetes",
+                "container-orchestration",
+                "cluster-management"
+            ]
+        }
+    },
+    {
+        "model": "core.certification",
+        "pk": "007",
+        "fields": {
+            "title": "CompTIA Security+",
+            "issuing_authority": "CompTIA",
+            "authority_website": "https://www.comptia.org/certifications/security",
+            "issue_date": "2023-08-01",
+            "expiry_date": "2026-08-01",
+            "credential_id": "SEC+-2023-1021",
+            "credential_url": "https://www.comptia.org/verify",
+            "created_at": "2025-10-25T10:00:00Z",
+            "updated_at": "2025-10-25T10:00:00Z",
+            "is_featured": "True",
+            "icon_class": "fas fa-user-shield",
+            "color_class": "bg-yellow-500",
+            "skills": [
+                "cybersecurity",
+                "network-security",
+                "incident-response"
+            ]
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$1000000$X5Bm7qeESJG9psZoeNVnbq$Fte/CeqyKXsHFq7PFGlfj2FREsavjMr2L2rWI6F6tIU=",
+            "last_login": "2025-10-25T06:13:50.435Z",
+            "is_superuser": true,
+            "username": "supperadmin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2025-10-25T05:55:11.826Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "auth",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "core",
+            "model": "blogcategory"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "core",
+            "model": "blogseries"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "core",
+            "model": "blogtag"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "core",
+            "model": "contactmessage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "core",
+            "model": "profile"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "core",
+            "model": "projectcategory"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "core",
+            "model": "sitesettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 14,
+        "fields": {
+            "app_label": "core",
+            "model": "skill"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 15,
+        "fields": {
+            "app_label": "core",
+            "model": "skillarea"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 16,
+        "fields": {
+            "app_label": "core",
+            "model": "project"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 17,
+        "fields": {
+            "app_label": "core",
+            "model": "projectimage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 18,
+        "fields": {
+            "app_label": "core",
+            "model": "experience"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 19,
+        "fields": {
+            "app_label": "core",
+            "model": "education"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 20,
+        "fields": {
+            "app_label": "core",
+            "model": "certification"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 21,
+        "fields": {
+            "app_label": "core",
+            "model": "blogpost"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "ajhgtkq834ppi5v5a26olj5of1j3vtnl",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGln-YoeSPmew1rsbHEC2FCcV4u4QKQW0b2beSyTY1pK2zkuaSVyEFqffLQM-uO6A7lBvTWKr6zJnuSvyoF2Ojfh5Pdy_gwK9fGtDAYMyOTjrz8PgoqMMHHy0WWlCtFpBZDTsLbOflAugAk2ACKzAsHh_ANqZOH4:1vCXXC:T5b0CudYahZS71fJSzNBy2f1O3oqw31z8unk-nN20ko",
+            "expire_date": "2025-10-26T06:13:50.438Z"
+        }
+    }
+]
