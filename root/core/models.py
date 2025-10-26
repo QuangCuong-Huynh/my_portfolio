@@ -3,7 +3,7 @@
 Core models for Portfolio Web Application
 Implements SFIA-based skills and STAR method structure
 """
-
+from datetime import timezone
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
