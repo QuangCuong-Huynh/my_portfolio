@@ -1,0 +1,393 @@
+<!-- Enhanced Project Card Component -->
+<!-- Usage: {% include 'components/project_card.html' with project=project_object featured=True compact=False %} -->
+
+<article class="project-card group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 animate-slide-up"
+         data-project-id="{{ project.id }}">
+    
+    <!-- Project Image/Thumbnail -->
+    <div class="relative h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-primary-400 to-accent-600">
+        {% if project.image %}
+        <img src="{{ project.image }}" 
+             alt="{{ project.name }}" 
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+        {% else %}
+        <!-- Fallback Pattern -->
+        <div class="w-full h-full bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-2xl"></div>
+                <div class="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-2xl"></div>
+            </div>
+            <i class="fas fa-project-diagram text-7xl text-white opacity-40 relative z-10" aria-hidden="true"></i>
+        </div>
+        {% endif %}
+        
+        <!-- Image Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+        
+        <!-- Top Badges -->
+        <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="flex flex-wrap gap-2">
+                <!-- Featured Badge -->
+                {% if featured %}
+                <span class="px-3 py-1.5 bg-yellow-400 text-yellow-900 text-xs font-bold rounded-full shadow-lg flex items-center backdrop-blur-sm">
+                    <i class="fas fa-star mr-1.5" aria-hidden="true"></i>
+                    Featured
+                </span>
+                {% endif %}
+                
+                <!-- Status Badge -->
+                {% if project.status %}
+                <span class="px-3 py-1.5 {% if project.status == 'completed' %}bg-green-500 text-white{% elif project.status == 'ongoing' %}bg-blue-500 text-white{% else %}bg-gray-500 text-white{% endif %} text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm">
+                    {% if project.status == 'completed' %}
+                        <i class="fas fa-check-circle mr-1" aria-hidden="true"></i>
+                    {% elif project.status == 'ongoing' %}
+                        <i class="fas fa-sync-alt mr-1" aria-hidden="true"></i>
+                    {% endif %}
+                    {{ project.status|title }}
+                </span>
+                {% endif %}
+            </div>
+            
+            <!-- Bookmark Button -->
+            <button class="bookmark-btn w-10 h-10 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-yellow-500 transition-colors shadow-lg opacity-0 group-hover:opacity-100"
+                    data-project-id="{{ project.id }}"
+                    aria-label="Bookmark project">
+                <i class="far fa-bookmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+        <!-- Quick Action Buttons (appear on hover) -->
+        <div class="absolute bottom-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+            {% if project.live_url %}
+            <a href="{{ project.live_url }}" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="w-11 h-11 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-primary-600 dark:text-primary-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors shadow-lg hover:scale-110 transform"
+               aria-label="View live demo"
+               title="Live Demo">
+                <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+            
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="w-11 h-11 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-900 hover:text-white transition-colors shadow-lg hover:scale-110 transform"
+               aria-label="View GitHub repository"
+               title="GitHub">
+                <i class="fab fa-github text-sm" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+            
+            {% if project.demo_video %}
+            <button class="play-video-btn w-11 h-11 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white transition-colors shadow-lg hover:scale-110 transform"
+                    data-video-url="{{ project.demo_video }}"
+                    aria-label="Play demo video"
+                    title="Demo Video">
+                <i class="fas fa-play text-sm ml-0.5" aria-hidden="true"></i>
+            </button>
+            {% endif %}
+        </div>
+        
+        <!-- Category Badge (bottom left) -->
+        {% if project.category %}
+        <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+            <span class="px-3 py-1.5 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm">
+                <i class="fas fa-tag mr-1.5" aria-hidden="true"></i>
+                {{ project.category }}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Project Content -->
+    <div class="p-6">
+        <!-- Project Header -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors line-clamp-2 group/title">
+                <a href="{% url 'project_detail' project.slug %}" class="flex items-center">
+                    {{ project.name }}
+                    <i class="fas fa-arrow-right ml-2 text-sm opacity-0 group-hover/title:opacity-100 transform translate-x-0 group-hover/title:translate-x-1 transition-all" aria-hidden="true"></i>
+                </a>
+            </h3>
+            
+            <!-- Meta Information -->
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
+                {% if project.period %}
+                <span class="flex items-center">
+                    <i class="far fa-calendar mr-1.5" aria-hidden="true"></i>
+                    {{ project.period }}
+                </span>
+                {% endif %}
+                
+                {% if project.client %}
+                <span class="flex items-center">
+                    <i class="fas fa-building mr-1.5" aria-hidden="true"></i>
+                    {{ project.client }}
+                </span>
+                {% endif %}
+                
+                {% if project.duration %}
+                <span class="flex items-center">
+                    <i class="far fa-clock mr-1.5" aria-hidden="true"></i>
+                    {{ project.duration }}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Project Description -->
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed {% if compact %}line-clamp-2{% else %}line-clamp-3{% endif %}">
+            {{ project.summary }}
+        </p>
+        
+        <!-- Role Badge -->
+        {% if project.role %}
+        <div class="mb-4">
+            <span class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900 dark:bg-opacity-20 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-full border border-primary-200 dark:border-primary-700">
+                <i class="fas fa-user-tie mr-1.5" aria-hidden="true"></i>
+                {{ project.role }}
+            </span>
+        </div>
+        {% endif %}
+        
+        <!-- Key Result Highlight -->
+        {% if project.key_result %}
+        <div class="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 dark:bg-opacity-20 border-l-4 border-green-500 rounded-r shadow-sm">
+            <p class="text-sm text-green-800 dark:text-green-300 font-semibold flex items-start leading-snug">
+                <i class="fas fa-chart-line mt-0.5 mr-2 flex-shrink-0" aria-hidden="true"></i>
+                <span>{{ project.key_result }}</span>
+            </p>
+        </div>
+        {% endif %}
+        
+        <!-- Technology Tags -->
+        {% if project.technologies %}
+        <div class="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex flex-wrap gap-2">
+                {% for tech in project.technologies|slice:":6" %}
+                <span class="px-2.5 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-md hover:bg-primary-100 dark:hover:bg-primary-900 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+                    {{ tech }}
+                </span>
+                {% endfor %}
+                {% if project.technologies|length > 6 %}
+                <span class="px-2.5 py-1 text-gray-500 dark:text-gray-400 text-xs font-medium flex items-center">
+                    <i class="fas fa-plus-circle mr-1" aria-hidden="true"></i>
+                    {{ project.technologies|length|add:"-6" }} more
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Project Stats (if available) -->
+        {% if project.stats %}
+        <div class="mb-4 grid grid-cols-3 gap-3">
+            {% for stat in project.stats|slice:":3" %}
+            <div class="text-center p-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div class="text-lg font-bold text-primary-600 dark:text-primary-400">
+                    {{ stat.value }}
+                </div>
+                <div class="text-xs text-gray-600 dark:text-gray-400 leading-tight">
+                    {{ stat.label }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Team Size & Collaboration -->
+        {% if project.team_size or project.collaborators %}
+        <div class="mb-4 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+            {% if project.team_size %}
+            <span class="flex items-center">
+                <i class="fas fa-users mr-1.5" aria-hidden="true"></i>
+                Team of {{ project.team_size }}
+            </span>
+            {% endif %}
+            
+            {% if project.collaborators %}
+            <div class="flex items-center -space-x-2">
+                {% for collab in project.collaborators|slice:":3" %}
+                <div class="w-7 h-7 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-gray-800 overflow-hidden"
+                     title="{{ collab.name }}">
+                    {% if collab.avatar %}
+                    <img src="{{ collab.avatar }}" alt="{{ collab.name }}" class="w-full h-full object-cover">
+                    {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-xs font-semibold text-white">
+                        {{ collab.name|slice:":1" }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% if project.collaborators|length > 3 %}
+                <div class="w-7 h-7 rounded-full bg-gray-400 dark:bg-gray-600 border-2 border-white dark:border-gray-800 flex items-center justify-center text-xs font-semibold text-white">
+                    +{{ project.collaborators|length|add:"-3" }}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <!-- Action Buttons -->
+        <div class="flex {% if project.live_url and project.github_url %}space-x-2{% else %}space-x-3{% endif %} pt-4 border-t border-gray-200 dark:border-gray-700">
+            <!-- Primary CTA -->
+            <a href="{% url 'project_detail' project.slug %}" 
+               class="flex-1 text-center px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold rounded-lg transition-all shadow-md hover:shadow-lg group/btn">
+                <i class="fas fa-book-open mr-2" aria-hidden="true"></i>
+                <span>Case Study</span>
+                <i class="fas fa-arrow-right ml-2 text-xs transform translate-x-0 group-hover/btn:translate-x-1 transition-transform" aria-hidden="true"></i>
+            </a>
+            
+            <!-- Secondary Actions -->
+            {% if project.live_url or project.github_url %}
+            <div class="flex space-x-2">
+                {% if project.live_url %}
+                <a href="{{ project.live_url }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="w-12 h-12 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary-500 hover:text-primary-600 dark:hover:border-primary-500 dark:hover:text-primary-400 rounded-lg transition-colors"
+                   title="Live Demo">
+                    <i class="fas fa-external-link-alt text-base" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+                
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="w-12 h-12 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-900 hover:text-gray-900 dark:hover:border-gray-400 dark:hover:text-gray-100 rounded-lg transition-colors"
+                   title="GitHub">
+                    <i class="fab fa-github text-base" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Footer (Awards/Recognition) -->
+    {% if project.awards %}
+    <div class="px-6 pb-6">
+        <div class="flex items-center space-x-2 text-xs">
+            <i class="fas fa-award text-yellow-500" aria-hidden="true"></i>
+            <span class="text-gray-600 dark:text-gray-400 font-medium">
+                {{ project.awards|join:", " }}
+            </span>
+        </div>
+    </div>
+    {% endif %}
+</article>
+
+<style>
+    /* Line clamp utilities */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* Card animation on hover */
+    .project-card {
+        will-change: transform, box-shadow;
+    }
+    
+    /* Smooth image zoom */
+    .project-card img {
+        will-change: transform;
+    }
+    
+    /* Bookmark button animation */
+    .bookmark-btn .fa-bookmark {
+        transition: all 0.2s ease;
+    }
+    
+    .bookmark-btn.bookmarked .fa-bookmark {
+        font-weight: 900;
+    }
+    
+    .bookmark-btn.bookmarked .fa-bookmark::before {
+        content: "\f02e";
+    }
+    
+    /* Technology tag hover effect */
+    .project-card:hover .bg-gray-100 {
+        animation: subtle-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes subtle-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Bookmark functionality
+        document.querySelectorAll('.bookmark-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                this.classList.toggle('bookmarked');
+                const icon = this.querySelector('i');
+                
+                if (this.classList.contains('bookmarked')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.classList.add('text-yellow-500');
+                    
+                    // Store in localStorage
+                    const projectId = this.dataset.projectId;
+                    const bookmarks = JSON.parse(localStorage.getItem('bookmarkedProjects') || '[]');
+                    if (!bookmarks.includes(projectId)) {
+                        bookmarks.push(projectId);
+                        localStorage.setItem('bookmarkedProjects', JSON.stringify(bookmarks));
+                    }
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.classList.remove('text-yellow-500');
+                    
+                    // Remove from localStorage
+                    const projectId = this.dataset.projectId;
+                    let bookmarks = JSON.parse(localStorage.getItem('bookmarkedProjects') || '[]');
+                    bookmarks = bookmarks.filter(id => id !== projectId);
+                    localStorage.setItem('bookmarkedProjects', JSON.stringify(bookmarks));
+                }
+            });
+            
+            // Load bookmarked state
+            const projectId = btn.dataset.projectId;
+            const bookmarks = JSON.parse(localStorage.getItem('bookmarkedProjects') || '[]');
+            if (bookmarks.includes(projectId)) {
+                btn.classList.add('bookmarked');
+                const icon = btn.querySelector('i');
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('text-yellow-500');
+            }
+        });
+        
+        // Video modal functionality (if needed)
+        document.querySelectorAll('.play-video-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const videoUrl = this.dataset.videoUrl;
+                // Implement your video modal here
+                console.log('Play video:', videoUrl);
+            });
+        });
+    });
+</script>

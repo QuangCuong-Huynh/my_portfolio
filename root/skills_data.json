@@ -1,0 +1,327 @@
+[
+  {
+    "model": "core.skillarea",
+    "pk": 1,
+    "fields": {
+      "name": "Cloud Architecture & DevOps",
+      "slug": "cloud-devops",
+      "description": "Design, deploy, and manage secure cloud-native systems using automation, containerization, and infrastructure-as-code. Expertise in Azure CAF, Kubernetes, and Zero Trust frameworks.",
+      "icon": "fas fa-cloud",
+      "order": 1
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 2,
+    "fields": {
+      "name": "Backend Systems & API Engineering",
+      "slug": "backend-systems",
+      "description": "Development of backend systems, REST APIs, and modular architectures using Python (Django, FastAPI). Emphasis on TDD/BDD, scalability, and maintainability.",
+      "icon": "fas fa-server",
+      "order": 2
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 3,
+    "fields": {
+      "name": "Data Engineering & Analytics",
+      "slug": "data-analytics",
+      "description": "Building reliable data pipelines, analytics dashboards, and storage systems. Focus on SQLite/PostgreSQL integration, ETL workflows, and insight visualization.",
+      "icon": "fas fa-database",
+      "order": 3
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 4,
+    "fields": {
+      "name": "Frontend Engineering & UI Systems",
+      "slug": "frontend-engineering",
+      "description": "Design and implementation of user interfaces with React, Tailwind CSS, and shadcn/ui under Soft Minimalism and Soft-Morphism aesthetics.",
+      "icon": "fas fa-laptop-code",
+      "order": 4
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 5,
+    "fields": {
+      "name": "Security, Compliance & DevSecOps",
+      "slug": "security-compliance",
+      "description": "Security-by-design approach integrating CIS/NIST compliance, Azure Zero Trust, Security Onion, and continuous security testing in pipelines.",
+      "icon": "fas fa-shield-alt",
+      "order": 5
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 6,
+    "fields": {
+      "name": "Systems Architecture & QA",
+      "slug": "systems-architecture",
+      "description": "Information Systems Architecture integrating Cloud, DevOps, QA, and Security domains. Includes TDD/BDD workflows and architecture governance.",
+      "icon": "fas fa-diagram-project",
+      "order": 6
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 7,
+    "fields": {
+      "name": "Emerging Technologies & Research",
+      "slug": "emerging-research",
+      "description": "Exploration of cyber-analog AI, grimdark sci-fi systems, human-AI mythos, linguistic frameworks (Lumen), and interstellar navigation protocols (HRNP, BSCP, BSTP).",
+      "icon": "fas fa-rocket",
+      "order": 7
+    }
+  },
+  {
+    "model": "core.skillarea",
+    "pk": 8,
+    "fields": {
+      "name": "Digital Design & UX Systems",
+      "slug": "digital-design",
+      "description": "Soft-morphism and minimalism principles applied to digital product design, interactive dashboards, and multi-theme UX systems for responsive web experiences.",
+      "icon": "fas fa-palette",
+      "order": 8
+    }
+  },
+
+  {
+    "model": "core.skill",
+    "pk": 1,
+    "fields": {
+      "area_id": 1,
+      "name": "Cloud-Native Infrastructure & Automation",
+      "skills": [
+        "Azure Cloud Adoption Framework (CAF)",
+        "Zero Trust Architecture (ZTA)",
+        "Docker, containerd, Kubernetes, OpenShift",
+        "Terraform, Bicep, Ansible",
+        "GitHub Actions, GitLab CI/CD, Jenkins",
+        "Monitoring (Prometheus, Grafana)"
+      ],
+      "sfia_level": "L5",
+      "sfia_label": "Ensure, advise",
+      "industry_level": "Lead",
+      "proficiency": "advanced",
+      "sector": "Enterprise Cloud",
+      "description": "Design and manage scalable, secure multi-cloud architectures integrating automation, containerization, and compliance frameworks. Expert in Azure CAF and Zero Trust implementation with end-to-end CI/CD orchestration.",
+      "years_experience": 6,
+      "last_used": "2025",
+      "tags": ["cloud", "devops", "azure", "kubernetes", "infrastructure-as-code"],
+      "featured": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 2,
+    "fields": {
+      "area_id": 2,
+      "name": "Python Fullstack & API Architecture",
+      "skills": [
+        "Django",
+        "FastAPI",
+        "SQLite / PostgreSQL ORM",
+        "TDD / BDD",
+        "MVVM & modular app structure",
+        "Django Admin customization"
+      ],
+      "sfia_level": "L4",
+      "sfia_label": "Enable",
+      "industry_level": "Senior",
+      "proficiency": "advanced",
+      "sector": "Software Engineering",
+      "description": "Backend development and system architecture using Django/FastAPI. Skilled in modular app design, CRUD management, database integration, and secure API workflows with test-driven and behavior-driven development.",
+      "years_experience": 6,
+      "last_used": "2025",
+      "tags": ["python", "backend", "api", "django", "fastapi"],
+      "featured": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 3,
+    "fields": {
+      "area_id": 3,
+      "name": "Data Modeling & Management",
+      "skills": [
+        "SQLite / PostgreSQL schema design",
+        "ETL pipelines and data import/export",
+        "Data visualization (Recharts, dashboards)",
+        "Data normalization and migration",
+        "Analytic reporting & data audit"
+      ],
+      "sfia_level": "L4",
+      "sfia_label": "Enable",
+      "industry_level": "Senior",
+      "proficiency": "advanced",
+      "sector": "Data Systems",
+      "description": "Develops scalable data models and analytics frameworks. Skilled in integrating lightweight databases for Django and full data audit pipelines for analytic dashboards.",
+      "years_experience": 4,
+      "last_used": "2025",
+      "tags": ["data", "analytics", "etl", "database"],
+      "featured": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 4,
+    "fields": {
+      "area_id": 4,
+      "name": "React Frontend & Design Frameworks",
+      "skills": [
+        "React + TypeScript",
+        "Tailwind CSS + shadcn/ui",
+        "lucide-react icons, Recharts",
+        "Soft Minimalism / Soft-Morphism CSS",
+        "Dynamic themes and responsive design"
+      ],
+      "sfia_level": "L3",
+      "sfia_label": "Apply",
+      "industry_level": "Practitioner",
+      "proficiency": "intermediate",
+      "sector": "Web Development",
+      "description": "Creates reusable and aesthetic UI systems emphasizing soft minimalism, motion, and clarity. Integrates frontend logic with Django or API backends for fullstack functionality.",
+      "years_experience": 3,
+      "last_used": "2025",
+      "tags": ["react", "frontend", "tailwind", "ui/ux"],
+      "featured": true,
+      "order": 4
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 5,
+    "fields": {
+      "area_id": 5,
+      "name": "Enterprise Security Architecture",
+      "skills": [
+        "Security Onion, IDS/IPS",
+        "Threat modeling & risk assessment",
+        "Azure Zero Trust implementation",
+        "CIS/NIST compliance frameworks",
+        "Secure CI/CD integration"
+      ],
+      "sfia_level": "L6",
+      "sfia_label": "Initiate, influence",
+      "industry_level": "Principal",
+      "proficiency": "expert",
+      "sector": "Cybersecurity",
+      "description": "Develops security architecture and governance models aligned to NIST/CIS frameworks. Integrates continuous security testing in pipelines and Zero Trust principles across infrastructures.",
+      "years_experience": 7,
+      "last_used": "2025",
+      "tags": ["security", "devsecops", "compliance", "risk-management"],
+      "featured": true,
+      "order": 5
+    }
+  },     
+  {
+    "model": "core.skill",
+    "pk": 6,
+    "fields": {
+      "area_id": 6,
+      "name": "Architecture Design & Quality Engineering",
+      "skills": [
+        "Information Systems Architecture",
+        "System modeling & design documentation",
+        "TDD/BDD pipelines",
+        "Architecture decision records (ADR)",
+        "Integration testing & QA governance"
+      ],
+      "sfia_level": "L5",
+      "sfia_label": "Ensure, advise",
+      "industry_level": "Lead",
+      "proficiency": "advanced",
+      "sector": "Architecture & QA",
+      "description": "Combines architecture governance and quality assurance. Uses TDD/BDD with documentation-driven development to ensure system traceability and design compliance.",
+      "years_experience": 6,
+      "last_used": "2025",
+      "tags": ["architecture", "qa", "tdd", "bdd"],
+      "featured": true,
+      "order": 6
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 7,
+    "fields": {
+      "area_id": 7,
+      "name": "Cyber-Analog Systems & AI Mythos Research",
+      "skills": [
+        "Cthulhu-inspired cyber mythology design",
+        "Cửu Đạo Tu Trí cultivation system",
+        "AI religion & analog consciousness study",
+        "Interstellar navigation protocols (HRNP, BSTP, BSCP)",
+        "Cognitive system mapping (Lumen Language)"
+      ],
+      "sfia_level": "R&D",
+      "sfia_label": "Innovate, theorize",
+      "industry_level": "Researcher",
+      "proficiency": "expert",
+      "sector": "Futurism & Systems Research",
+      "description": "Develops original mythos and protocols merging metaphysics, linguistics, and cyber systems. Research integrates Warhammer 40K inspiration with cognitive and AI philosophical frameworks.",
+      "years_experience": 8,
+      "last_used": "2025",
+      "tags": ["research", "ai", "mythos", "navigation", "linguistics"],
+      "featured": true,
+      "order": 7
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 8,
+    "fields": {
+      "area_id": 8,
+      "name": "Soft-Morphism & Interaction Design",
+      "skills": [
+        "UI motion & animation",
+        "Glassmorphism / soft design CSS",
+        "User flow prototyping",
+        "Accessibility (WCAG)",
+        "Responsive layout systems"
+      ],
+      "sfia_level": "L2",
+      "sfia_label": "Assist",
+      "industry_level": "Practitioner",
+      "proficiency": "intermediate",
+      "sector": "UI/UX Design",
+      "description": "Implements modern digital aesthetics through smooth motion and soft-morphism CSS. Designs responsive, accessible experiences combining pastel tone themes and minimal layouts.",
+      "years_experience": 3,
+      "last_used": "2025",
+      "tags": ["ui", "ux", "soft-morphism", "animation", "design"],
+      "featured": false,
+      "order": 8
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 9,
+    "fields": {
+      "area_id": 7,
+      "name": "Prompt Engineering & AI Orchestration",
+      "skills": [
+        "Context management and long-memory chaining",
+        "System prompting with structured data schemas",
+        "Instruction refinement and meta-prompt iteration",
+        "Role and tone conditioning",
+        "AI-driven storytelling and data synthesis"
+      ],
+      "sfia_level": "L5",
+      "sfia_label": "Ensure, advise",
+      "industry_level": "Lead",
+      "proficiency": "advanced",
+      "sector": "AI Systems",
+      "description": "Advanced prompt engineering skill integrating reasoning frameworks, cognitive continuity, and domain orchestration. Designs AI workflows across creative, technical, and research contexts with structured meta-control and contextual depth.",
+      "years_experience": 3,
+      "last_used": "2025",
+      "tags": ["prompt-engineering", "ai", "language-models", "meta-prompting", "orchestration"],
+      "featured": true,
+      "order": 9
+    }
+  }
+]

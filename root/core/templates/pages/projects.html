@@ -1,0 +1,522 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block meta_description %}Explore my portfolio of technical projects including cloud architecture, full-stack development, DevOps automation, and security implementations.{% endblock %}
+
+{% block extra_styles %}
+
+<style>
+    /* Filter sidebar animation */
+    .filter-sidebar {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .filter-sidebar.hidden-mobile {
+        transform: translateX(-100%);
+    }
+    
+    @media (min-width: 1024px) {
+        .filter-sidebar.hidden-mobile {
+            transform: translateX(0);
+        }
+    }
+    
+    /* Search input focus effect */
+    .search-input:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    /* Checkbox custom styling */
+    .filter-checkbox:checked {
+        background-color: #2563eb;
+        border-color: #2563eb;
+    }
+    
+    /* Loading skeleton */
+    @keyframes skeleton-loading {
+        0% { background-position: -200px 0; }
+        100% { background-position: calc(200px + 100%) 0; }
+    }
+    
+    .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200px 100%;
+        animation: skeleton-loading 1.5s infinite;
+    }
+    
+    .dark .skeleton {
+        background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    }
+    
+    /* Fade in animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-16 bg-gradient-to-r from-primary-600 to-accent-600 text-white overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-20 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-heading mb-6">
+                My Projects
+            </h1>
+            <p class="text-lg sm:text-xl opacity-90 leading-relaxed">
+                A collection of technical projects showcasing cloud architecture, full-stack development, 
+                DevOps automation, and security implementations. Each project demonstrates measurable impact 
+                and real-world problem-solving.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-12 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Filters -->
+            <aside class="lg:w-80 flex-shrink-0">
+                <!-- Mobile Filter Toggle -->
+                <button id="filter-toggle" 
+                        class="lg:hidden w-full mb-4 px-4 py-3 bg-white dark:bg-gray-800 rounded-lg shadow-md flex items-center justify-between text-gray-900 dark:text-gray-100 font-semibold">
+                    <span class="flex items-center">
+                        <i class="fas fa-filter mr-2" aria-hidden="true"></i>
+                        Filters
+                    </span>
+                    <i class="fas fa-chevron-down transition-transform" id="filter-toggle-icon" aria-hidden="true"></i>
+                </button>
+                
+                <!-- Filter Panel -->
+                <div id="filter-panel" class="hidden lg:block space-y-6">
+                    <!-- Search -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-search mr-2 text-primary-600" aria-hidden="true"></i>
+                            Search
+                        </h3>
+                        <input type="text" 
+                               id="search-input"
+                               placeholder="Search projects..." 
+                               class="search-input w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+                    </div>
+                    
+                    <!-- Status Filter -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-tasks mr-2 text-green-600" aria-hidden="true"></i>
+                            Status
+                        </h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="status" value="completed" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Completed
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="status" value="ongoing" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Ongoing
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="status" value="archived">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Archived
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-folder mr-2 text-blue-600" aria-hidden="true"></i>
+                            Category
+                        </h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="category" value="web-app" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Web Application
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="category" value="cloud" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Cloud Infrastructure
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="category" value="mobile" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Mobile App
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="category" value="devops" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    DevOps/Automation
+                                </span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="category" value="blockchain" checked>
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                                    Blockchain
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Technology Filter -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+                            <i class="fas fa-code mr-2 text-purple-600" aria-hidden="true"></i>
+                            Technology
+                        </h3>
+                        <div class="space-y-3 max-h-64 overflow-y-auto">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="react">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">React</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="django">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">Django</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="aws">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">AWS</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="docker">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">Docker</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="kubernetes">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">Kubernetes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="python">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">Python</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="filter-checkbox w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" 
+                                       data-filter="tech" value="postgresql">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">PostgreSQL</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Clear Filters -->
+                    <button id="clear-filters" 
+                            class="w-full px-4 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg transition-colors">
+                        <i class="fas fa-times mr-2" aria-hidden="true"></i>
+                        Clear All Filters
+                    </button>
+                </div>
+            </aside>
+            
+            <!-- Projects Grid -->
+            <main class="flex-1">
+                <!-- Toolbar -->
+                <div class="mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <!-- Results Count -->
+                        <div class="text-gray-700 dark:text-gray-300">
+                            <span class="font-semibold" id="results-count">12</span> projects found
+                        </div>
+                        
+                        <!-- Sort & View Options -->
+                        <div class="flex items-center gap-4">
+                            <!-- Sort Dropdown -->
+                            <div class="relative">
+                                <select id="sort-select" 
+                                        class="px-4 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer appearance-none">
+                                    <option value="recent">Most Recent</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="name">Name (A-Z)</option>
+                                    <option value="name-desc">Name (Z-A)</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" aria-hidden="true"></i>
+                            </div>
+                            
+                            <!-- View Toggle -->
+                            <div class="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                                <button id="view-grid" 
+                                        class="view-toggle active px-3 py-2 rounded-md transition-colors"
+                                        data-view="grid"
+                                        aria-label="Grid view">
+                                    <i class="fas fa-th" aria-hidden="true"></i>
+                                </button>
+                                <button id="view-list" 
+                                        class="view-toggle px-3 py-2 rounded-md transition-colors"
+                                        data-view="list"
+                                        aria-label="List view">
+                                    <i class="fas fa-list" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projects Container -->
+                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Projects will be dynamically loaded here -->
+                    <!-- Using project_card.html component -->
+                    
+                    {% for project in projects %}
+                        {% include 'components/project_card.html' with project=project featured=forloop.first %}
+                    {% empty %}
+                    <div class="col-span-full text-center py-20">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full mb-4">
+                            <i class="fas fa-search text-3xl text-gray-400" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No projects found</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Try adjusting your filters or search terms</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loading-skeleton" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for i in "123" %}
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg">
+                        <div class="skeleton h-48"></div>
+                        <div class="p-6 space-y-3">
+                            <div class="skeleton h-6 w-3/4 rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded"></div>
+                            <div class="skeleton h-20 rounded"></div>
+                            <div class="flex gap-2">
+                                <div class="skeleton h-6 w-16 rounded"></div>
+                                <div class="skeleton h-6 w-16 rounded"></div>
+                                <div class="skeleton h-6 w-16 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Pagination -->
+                {% if projects.has_other_pages %}
+                <div class="mt-12 flex justify-center">
+                    <nav class="flex items-center gap-2" aria-label="Pagination">
+                        {% if projects.has_previous %}
+                        <a href="?page={{ projects.previous_page_number }}" 
+                           class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        
+                        {% for num in projects.paginator.page_range %}
+                            {% if projects.number == num %}
+                            <span class="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold">
+                                {{ num }}
+                            </span>
+                            {% elif num > projects.number|add:'-3' and num < projects.number|add:'3' %}
+                            <a href="?page={{ num }}" 
+                               class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                {{ num }}
+                            </a>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if projects.has_next %}
+                        <a href="?page={{ projects.next_page_number }}" 
+                           class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                    </nav>
+                </div>
+                {% endif %}
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">
+            Have a Project in Mind?
+        </h2>
+        <p class="text-lg md:text-xl opacity-90 mb-8 leading-relaxed">
+            I'm always excited to take on new challenges and collaborate on innovative solutions. 
+            Let's discuss how I can help bring your ideas to life.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" 
+               class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl">
+                <i class="fas fa-comments mr-2" aria-hidden="true"></i>
+                Let's Talk
+            </a>
+            <a href="/about" 
+               class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-600 transition-colors">
+                <i class="fas fa-user mr-2" aria-hidden="true"></i>
+                View Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile filter toggle
+        const filterToggle = document.getElementById('filter-toggle');
+        const filterPanel = document.getElementById('filter-panel');
+        const filterToggleIcon = document.getElementById('filter-toggle-icon');
+        
+        if (filterToggle) {
+            filterToggle.addEventListener('click', function() {
+                filterPanel.classList.toggle('hidden');
+                filterToggleIcon.classList.toggle('rotate-180');
+            });
+        }
+        
+        // View toggle
+        const viewButtons = document.querySelectorAll('.view-toggle');
+        const projectsContainer = document.getElementById('projects-container');
+        
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                viewButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'dark:bg-gray-600', 'text-primary-600', 'dark:text-primary-400');
+                    b.classList.add('text-gray-600', 'dark:text-gray-400');
+                });
+                
+                this.classList.add('active', 'bg-white', 'dark:bg-gray-600', 'text-primary-600', 'dark:text-primary-400');
+                this.classList.remove('text-gray-600', 'dark:text-gray-400');
+                
+                const view = this.dataset.view;
+                if (view === 'list') {
+                    projectsContainer.classList.remove('md:grid-cols-2', 'lg:grid-cols-3');
+                    projectsContainer.classList.add('grid-cols-1');
+                } else {
+                    projectsContainer.classList.add('md:grid-cols-2', 'lg:grid-cols-3');
+                }
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        let searchTimeout;
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    applyFilters();
+                }, 300);
+            });
+        }
+        
+        // Filter checkboxes
+        const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+        filterCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', applyFilters);
+        });
+        
+        // Sort select
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', applyFilters);
+        }
+        
+        // Clear filters
+        const clearFiltersBtn = document.getElementById('clear-filters');
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                filterCheckboxes.forEach(cb => {
+                    if (cb.dataset.filter === 'status' && (cb.value === 'completed' || cb.value === 'ongoing')) {
+                        cb.checked = true;
+                    } else if (cb.dataset.filter === 'category') {
+                        cb.checked = true;
+                    } else {
+                        cb.checked = false;
+                    }
+                });
+                sortSelect.value = 'recent';
+                applyFilters();
+            });
+        }
+        
+        // Apply filters function
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortBy = sortSelect.value;
+            
+            // Get selected filters
+            const selectedStatuses = Array.from(document.querySelectorAll('.filter-checkbox[data-filter="status"]:checked')).map(cb => cb.value);
+            const selectedCategories = Array.from(document.querySelectorAll('.filter-checkbox[data-filter="category"]:checked')).map(cb => cb.value);
+            const selectedTechs = Array.from(document.querySelectorAll('.filter-checkbox[data-filter="tech"]:checked')).map(cb => cb.value);
+            
+            // In a real implementation, this would make an AJAX request
+            // For now, we'll just update the UI
+            console.log('Applying filters:', {
+                searchTerm,
+                sortBy,
+                selectedStatuses,
+                selectedCategories,
+                selectedTechs
+            });
+            
+            // Show loading state
+            showLoading();
+            
+            // Simulate API call
+            setTimeout(() => {
+                hideLoading();
+                // Update results count
+                document.getElementById('results-count').textContent = Math.floor(Math.random() * 20) + 5;
+            }, 500);
+        }
+        
+        function showLoading() {
+            projectsContainer.classList.add('hidden');
+            document.getElementById('loading-skeleton').classList.remove('hidden');
+        }
+        
+        function hideLoading() {
+            projectsContainer.classList.remove('hidden');
+            document.getElementById('loading-skeleton').classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

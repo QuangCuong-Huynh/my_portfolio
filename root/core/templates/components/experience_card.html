@@ -1,0 +1,361 @@
+<!-- Enhanced Experience Card Component -->
+<!-- Usage: {% include 'components/experience_card.html' with experience=exp_object expanded=False %} -->
+
+<article class="experience-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl animate-slide-up"
+         data-experience-id="{{ experience.id }}">
+    
+    <!-- Card Header -->
+    <div class="p-6 sm:p-8 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+            <!-- Left: Company & Role Info -->
+            <div class="flex items-start space-x-4 flex-1">
+                <!-- Company Logo -->
+                {% if experience.company_logo %}
+                <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-white dark:bg-gray-700 shadow-md ring-2 ring-gray-100 dark:ring-gray-600">
+                    <img src="{{ experience.company_logo }}" 
+                         alt="{{ experience.company }} logo" 
+                         class="w-full h-full object-cover">
+                </div>
+                {% else %}
+                <div class="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center shadow-md">
+                    <i class="fas fa-building text-2xl text-white" aria-hidden="true"></i>
+                </div>
+                {% endif %}
+                
+                <!-- Role & Company Details -->
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 dark:text-gray-100 mb-2 leading-tight">
+                        {{ experience.role }}
+                    </h3>
+                    <a href="{% if experience.company_url %}{{ experience.company_url }}{% else %}#{% endif %}" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold text-base sm:text-lg mb-2 hover:underline group">
+                        {{ experience.company }}
+                        {% if experience.company_url %}
+                        <i class="fas fa-external-link-alt text-xs ml-2 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
+                        {% endif %}
+                    </a>
+                    
+                    <!-- Meta Information -->
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        {% if experience.location %}
+                        <span class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-1.5 text-gray-400" aria-hidden="true"></i>
+                            {{ experience.location }}
+                        </span>
+                        {% endif %}
+                        
+                        {% if experience.employment_type %}
+                        <span class="flex items-center">
+                            <i class="fas fa-briefcase mr-1.5 text-gray-400" aria-hidden="true"></i>
+                            {{ experience.employment_type }}
+                        </span>
+                        {% endif %}
+                        
+                        {% if experience.team_size %}
+                        <span class="flex items-center">
+                            <i class="fas fa-users mr-1.5 text-gray-400" aria-hidden="true"></i>
+                            Team of {{ experience.team_size }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right: Period & Status -->
+            <div class="flex flex-col items-start lg:items-end gap-3">
+                <!-- Period Badge -->
+                <div class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-primary-500 to-accent-600 text-white rounded-lg font-semibold text-sm shadow-md">
+                    <i class="far fa-calendar-alt mr-2" aria-hidden="true"></i>
+                    {{ experience.period }}
+                </div>
+                
+                <!-- Duration -->
+                {% if experience.duration %}
+                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    {{ experience.duration }}
+                </span>
+                {% endif %}
+                
+                <!-- Current Job Badge -->
+                {% if experience.is_current %}
+                <span class="inline-flex items-center px-3 py-1 bg-green-100 dark:bg-green-900 dark:bg-opacity-30 text-green-700 dark:text-green-300 rounded-full text-xs font-semibold">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                    Current Role
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Card Body -->
+    <div class="p-6 sm:p-8">
+        <!-- Overview/Summary (Optional) -->
+        {% if experience.summary %}
+        <div class="mb-6 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border-l-4 border-blue-500 rounded-r">
+            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                {{ experience.summary }}
+            </p>
+        </div>
+        {% endif %}
+        
+        <!-- STAR Method Section -->
+        {% if experience.star %}
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                    Impact & Contributions
+                </h4>
+                <button class="toggle-star-btn text-sm text-primary-600 dark:text-primary-400 hover:underline"
+                        data-target="star-content-{{ experience.id }}"
+                        aria-expanded="{{ expanded|default:'true' }}">
+                    <span class="expand-text">{% if expanded %}Collapse{% else %}Expand{% endif %}</span>
+                    <i class="fas fa-chevron-down ml-1 transform transition-transform {% if expanded %}rotate-180{% endif %}" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div id="star-content-{{ experience.id }}" class="star-content {% if not expanded %}hidden{% endif %}">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Situation -->
+                    <div class="star-section group">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-900 dark:bg-opacity-30 rounded-xl flex items-center justify-center mr-4 shadow-sm group-hover:scale-110 transition-transform">
+                                <span class="text-red-600 dark:text-red-400 font-bold text-lg">S</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold text-red-600 dark:text-red-400 text-base mb-2 flex items-center">
+                                    Situation
+                                    <i class="fas fa-exclamation-circle ml-2 text-xs opacity-50" aria-hidden="true"></i>
+                                </h5>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                    {{ experience.star.situation }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Task -->
+                    <div class="star-section group">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-orange-100 dark:bg-orange-900 dark:bg-opacity-30 rounded-xl flex items-center justify-center mr-4 shadow-sm group-hover:scale-110 transition-transform">
+                                <span class="text-orange-600 dark:text-orange-400 font-bold text-lg">T</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold text-orange-600 dark:text-orange-400 text-base mb-2 flex items-center">
+                                    Task
+                                    <i class="fas fa-tasks ml-2 text-xs opacity-50" aria-hidden="true"></i>
+                                </h5>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                    {{ experience.star.task }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action -->
+                    <div class="star-section group">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 dark:bg-opacity-30 rounded-xl flex items-center justify-center mr-4 shadow-sm group-hover:scale-110 transition-transform">
+                                <span class="text-blue-600 dark:text-blue-400 font-bold text-lg">A</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold text-blue-600 dark:text-blue-400 text-base mb-2 flex items-center">
+                                    Action
+                                    <i class="fas fa-cogs ml-2 text-xs opacity-50" aria-hidden="true"></i>
+                                </h5>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                    {{ experience.star.action }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Result -->
+                    <div class="star-section group">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900 dark:bg-opacity-30 rounded-xl flex items-center justify-center mr-4 shadow-sm group-hover:scale-110 transition-transform">
+                                <span class="text-green-600 dark:text-green-400 font-bold text-lg">R</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold text-green-600 dark:text-green-400 text-base mb-2 flex items-center">
+                                    Result
+                                    <i class="fas fa-chart-line ml-2 text-xs opacity-50" aria-hidden="true"></i>
+                                </h5>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-semibold">
+                                    {{ experience.star.result }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Key Achievements -->
+        {% if experience.achievements %}
+        <div class="mb-6">
+            <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
+                <i class="fas fa-trophy text-yellow-500 mr-2" aria-hidden="true"></i>
+                Key Achievements
+            </h4>
+            <ul class="space-y-2.5">
+                {% for achievement in experience.achievements %}
+                <li class="flex items-start text-sm text-gray-600 dark:text-gray-400 group">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0 group-hover:scale-125 transition-transform" aria-hidden="true"></i>
+                    <span class="leading-relaxed">{{ achievement }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Technologies & Tools -->
+        {% if experience.technologies %}
+        <div class="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                <i class="fas fa-code mr-2" aria-hidden="true"></i>
+                Technologies & Tools
+            </h4>
+            <div class="flex flex-wrap gap-2">
+                {% for tech in experience.technologies %}
+                <span class="px-3 py-1.5 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 transition-colors">
+                    {{ tech }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Metrics (Optional) -->
+        {% if experience.metrics %}
+        <div class="mb-6">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                <i class="fas fa-chart-bar mr-2" aria-hidden="true"></i>
+                Key Metrics
+            </h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {% for metric in experience.metrics %}
+                <div class="text-center p-3 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-700 dark:to-gray-700 rounded-lg">
+                    <div class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-1">
+                        {{ metric.value }}
+                    </div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">
+                        {{ metric.label }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Related Projects/Links -->
+        <div class="flex flex-wrap gap-3">
+            {% if experience.related_projects %}
+            <a href="{% url 'projects' %}?experience={{ experience.id }}" 
+               class="inline-flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm hover:shadow-md">
+                <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>
+                View {{ experience.related_projects|length }} Project{{ experience.related_projects|length|pluralize }}
+            </a>
+            {% endif %}
+            
+            {% if experience.testimonial_url %}
+            <a href="{{ experience.testimonial_url }}" 
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-colors">
+                <i class="fas fa-quote-left mr-2" aria-hidden="true"></i>
+                Testimonial
+            </a>
+            {% endif %}
+            
+            {% if experience.reference_available %}
+            <button class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-colors"
+                    data-reference-modal="{{ experience.id }}">
+                <i class="fas fa-user-check mr-2" aria-hidden="true"></i>
+                Request Reference
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</article>
+
+<style>
+    /* Smooth expand/collapse */
+    .star-content {
+        transition: all 0.3s ease-in-out;
+        max-height: 2000px;
+        overflow: hidden;
+    }
+    
+    .star-content.hidden {
+        max-height: 0;
+        opacity: 0;
+    }
+    
+    /* STAR section styling */
+    .star-section {
+        position: relative;
+        padding-bottom: 1.5rem;
+    }
+    
+    /* Connecting lines between STAR sections (desktop only) */
+    @media (min-width: 768px) {
+        .star-section:nth-child(odd)::after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 60px;
+            bottom: -24px;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                rgba(156, 163, 175, 0.3), 
+                transparent);
+        }
+        
+        .dark .star-section:nth-child(odd)::after {
+            background: linear-gradient(to bottom, 
+                rgba(75, 85, 99, 0.3), 
+                transparent);
+        }
+        
+        .star-section:nth-child(3)::after,
+        .star-section:nth-child(4)::after {
+            display: none;
+        }
+    }
+    
+    /* Card hover effect */
+    .experience-card {
+        position: relative;
+    }
+    
+    .experience-card:hover {
+        transform: translateY(-2px);
+    }
+</style>
+
+<script>
+    // Toggle STAR content
+    document.querySelectorAll('.toggle-star-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const content = document.getElementById(targetId);
+            const icon = this.querySelector('.fa-chevron-down');
+            const text = this.querySelector('.expand-text');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                text.textContent = 'Collapse';
+                this.setAttribute('aria-expanded', 'true');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                text.textContent = 'Expand';
+                this.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+</script>
