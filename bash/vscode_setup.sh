@@ -1,0 +1,39 @@
+code --install-extension GitHub.copilot \
+    --install-extension eamodio.gitlens \
+    --install-extension mhutchie.git-graph \
+    --install-extension Gruntfuggly.todo-tree \
+    --install-extension aaron-bond.better-comments \
+    --install-extension streetsidesoftware.code-spell-checker \
+    --install-extension yzhang.markdown-all-in-one \
+    --install-extension pkief.material-icon-theme \ 
+    --install-extension zhuangtongfa.Material-theme \
+    --install-extension dbaeumer.vscode-eslint \
+    --install-extension esbenp.prettier-vscode \
+    --install-extension formulahendry.auto-rename-tag \ 
+    --install-extension formulahendry.auto-close-tag \
+    --install-extension christian-kohler.path-intellisense \
+    --install-extension bradlc.vscode-tailwindcss \
+    --install-extension pranaygp.vscode-css-peek \
+    --install-extension msjsdiag.debugger-for-chrome \
+    --install-extension ritwickdey.LiveServer \
+    --install-extension rangav.vscode-thunder-client \
+    --install-extension sonarsource.sonarlint-vscode \ 
+    --install-extension snyk-security.snyk-vscode-plugin \
+    --install-extension zricethezav.gitleaks \
+    --install-extension ms-azuretools.vscode-docker \
+    --install-extension hashicorp.terraform \
+    --install-extension ms-vsliveshare.vsliveshare \
+    --install-extension hediet.vscode-drawio \
+    --install-extension adpyke.codesnap \
+
+code --install-extension esbenp.prettier-vscode
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension ms-azuretools.vscode-docker  
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension christian-kohler.path-intellisense
+code --install-extension yzhang.markdown-all-in-one
+code --install-extension naumovs.color-highlight
+code --install-extension pkief.material-icon-theme    
+code --install-extension zhuangtongfa.Material-theme   

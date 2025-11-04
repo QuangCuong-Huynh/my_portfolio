@@ -1,0 +1,23 @@
+chmod +x vscode_setup.sh
+./vscode_setup.sh
+
+chmod +x kube_setup.sh
+./kube_setup.sh
+
+chmod +x node_setup.sh
+./node_setup.sh
+
+
+chmod +x sync-version.sh
+./sync-version.sh
+
+
+kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}" | \
+tr -s '[[:space:]]' '\n' | \
+sort | \
+uniq -c
+kubectl rollout restart deployment/log-output
+kubectl get deployments
+kubectl get services
+kubectl apply -f manifests
+
