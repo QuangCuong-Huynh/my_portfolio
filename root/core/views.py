@@ -429,3 +429,8 @@ def custom_500(request):
 def custom_403(request, exception):
     """Custom 403 error page"""
     return render(request, 'errors/403.html', status=403)
+
+handler403 = 'core.views.custom_403'
+handler404 = 'core.views.custom_404'
+handler500 = 'core.views.custom_500'
+# ============================================================================
