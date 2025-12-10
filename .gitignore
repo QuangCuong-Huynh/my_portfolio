@@ -2,7 +2,9 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
+#temp docs
+port2/
+.data.json
 # C extensions
 *.so
 

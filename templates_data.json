@@ -1,0 +1,318 @@
+{
+    "meta": {
+        "template_version": "1.0.0",
+        "created": "2025-12-11",
+        "description": "Ready-to-use JSON templates for Django Portfolio Application"
+    },
+    "profile_template": {
+        "id": "profile-XXX",
+        "name": "Full Name",
+        "job_title": "Job Title | Specialization",
+        "bio": "Detailed professional biography (2-3 paragraphs)",
+        "summary": "Brief one-line professional summary",
+        "location": "City, Country",
+        "email": "email@example.com",
+        "phone": "+1-555-0100",
+        "avatar": "/assets/images/avatar.jpg",
+        "banner": "/assets/images/banner.jpg",
+        "resume_pdf": "/assets/resume.pdf",
+        "social": {
+            "github": "https://github.com/username",
+            "linkedin": "https://linkedin.com/in/username",
+            "twitter": "https://twitter.com/username",
+            "website": "https://example.com"
+        },
+        "meta_description": "SEO meta description (max 160 chars)",
+        "created_at": "2025-01-01T00:00:00Z",
+        "updated_at": "2025-12-11T00:00:00Z"
+    },
+    "skill_template": {
+        "id": "skill-XXX",
+        "area": "Skill Area Name",
+        "name": "Skill Name",
+        "skills": [
+            "Technology 1",
+            "Technology 2",
+            "Technology 3"
+        ],
+        "sfia_level": "L3",
+        "industry_level": "Practitioner",
+        "proficiency": "intermediate",
+        "sector": "Industry Sector",
+        "description": "Detailed description of skill proficiency and application",
+        "years_experience": 5.0,
+        "last_used": "2025",
+        "evidence": [
+            {
+                "type": "certification",
+                "title": "Certification Name",
+                "url": "/certifications/cert-id",
+                "date": "2025-01-15"
+            },
+            {
+                "type": "project",
+                "title": "Project Name",
+                "url": "/projects/project-slug",
+                "date": "2024-06-01"
+            }
+        ],
+        "tags": [
+            "tag1",
+            "tag2",
+            "tag3"
+        ],
+        "featured": false,
+        "order": 1
+    },
+    "experience_template": {
+        "id": "exp-XXX",
+        "role": "Job Title",
+        "company": "Company Name",
+        "company_logo": "/assets/images/companies/logo.png",
+        "company_website": "https://company.com",
+        "location": "City, Country (Remote/Hybrid/On-site)",
+        "employment_type": "Full-time",
+        "start_date": "2022-01-01",
+        "end_date": null,
+        "current": true,
+        "period": "2022 – Present",
+        "star": {
+            "situation": "Context: What was the challenge or situation?",
+            "task": "Task: What were your responsibilities and objectives?",
+            "action": "Action: What specific steps did you take?",
+            "result": "Result: What were the measurable outcomes?"
+        },
+        "responsibilities": [
+            "Key responsibility 1",
+            "Key responsibility 2",
+            "Key responsibility 3"
+        ],
+        "technologies": [
+            "Tech 1",
+            "Tech 2",
+            "Tech 3"
+        ],
+        "achievements": [
+            "Achievement 1 with metrics",
+            "Achievement 2 with metrics"
+        ],
+        "skills_used": [
+            "skill-001",
+            "skill-002"
+        ],
+        "featured": true,
+        "order": 1
+    },
+    "project_template": {
+        "id": "project-XXX",
+        "slug": "project-url-slug",
+        "title": "Project Title",
+        "summary": "Brief one-sentence project summary",
+        "description": "Detailed project description (2-3 paragraphs)",
+        "thumbnail": "/assets/images/projects/thumb.jpg",
+        "images": [
+            "/assets/images/projects/image1.jpg",
+            "/assets/images/projects/image2.jpg"
+        ],
+        "category": "Project Category",
+        "status": "active",
+        "start_date": "2025-01-01",
+        "end_date": null,
+        "period": "2025 – Present",
+        "role": "Your Role",
+        "team_size": 1,
+        "client": "Client Name or null",
+        "star": {
+            "situation": "What problem or need did this project address?",
+            "task": "What were the project objectives and deliverables?",
+            "action": "What technical approach and implementation did you use?",
+            "result": "What were the business outcomes and metrics?"
+        },
+        "technologies": [
+            "Django",
+            "React",
+            "Docker",
+            "PostgreSQL"
+        ],
+        "links": {
+            "github": "https://github.com/user/repo",
+            "demo": "https://demo.example.com",
+            "website": null
+        },
+        "tags": [
+            "tag1",
+            "tag2",
+            "tag3"
+        ],
+        "skills_demonstrated": [
+            "skill-001"
+        ],
+        "featured": true,
+        "order": 1,
+        "metrics": {
+            "metric_name": "value",
+            "performance_improvement": "80%"
+        }
+    },
+    "certification_template": {
+        "id": "cert-XXX",
+        "title": "Certification Full Name",
+        "cert_type": "certification",
+        "issuer": "Issuing Organization",
+        "authority_website": "https://authority.com",
+        "issue_date": "2025-01-15",
+        "expiry_date": "2028-01-15",
+        "credential_id": "CERT-ID-12345",
+        "credential_url": "https://verify.example.com/cert",
+        "evidence_link": "/assets/certs/certificate.pdf",
+        "logo": "/assets/images/certs/logo.png",
+        "icon": "fas fa-certificate",
+        "color": "bg-blue-500",
+        "status": "active",
+        "featured": true,
+        "order": 1,
+        "skills": [
+            "skill-tag-1",
+            "skill-tag-2"
+        ],
+        "description": "Description of what this certification validates"
+    },
+    "education_template": {
+        "id": "edu-XXX",
+        "institution": "University Name",
+        "degree": "Degree Type",
+        "field_of_study": "Field of Study",
+        "start_date": "2018-09-01",
+        "end_date": "2022-06-15",
+        "is_current": false,
+        "description": "Description of studies, specializations, and achievements",
+        "gpa": 3.75,
+        "skills": [
+            "skill-001",
+            "skill-002"
+        ],
+        "achievements": [
+            "Achievement 1",
+            "Achievement 2"
+        ]
+    },
+    "blog_post_template": {
+        "id": "blog-XXX",
+        "slug": "blog-post-url-slug",
+        "title": "Blog Post Title",
+        "excerpt": "Brief summary for listings (max 300 chars)",
+        "content": "# Markdown Content\n\nFull blog post content in Markdown format...",
+        "featured_image": "/assets/images/blog/featured.jpg",
+        "series": "Series Name or null",
+        "category": "Category Name",
+        "tags": [
+            "tag1",
+            "tag2",
+            "tag3"
+        ],
+        "status": "published",
+        "published_date": "2025-11-15T10:00:00Z",
+        "meta_description": "SEO meta description (max 160 chars)",
+        "meta_keywords": "keyword1, keyword2, keyword3",
+        "reading_time": 8,
+        "view_count": 0,
+        "featured": false,
+        "order": 1
+    },
+    "contact_message_template": {
+        "name": "Sender Name",
+        "email": "sender@example.com",
+        "subject": "Message Subject",
+        "message": "Message content",
+        "status": "new",
+        "ip_address": "192.168.1.1",
+        "user_agent": "Mozilla/5.0...",
+        "admin_notes": "",
+        "replied_at": null
+    },
+    "site_settings_template": {
+        "site_title": "Portfolio Site Title",
+        "site_tagline": "Professional Tagline",
+        "site_description": "Site description for SEO",
+        "meta_keywords": "keyword1, keyword2, keyword3",
+        "google_analytics_id": "G-XXXXXXXXXX",
+        "contact_email": "contact@example.com",
+        "contact_phone": "+1-555-0100",
+        "github_url": "https://github.com/username",
+        "linkedin_url": "https://linkedin.com/in/username",
+        "twitter_url": "https://twitter.com/username",
+        "enable_blog": true,
+        "enable_contact_form": true,
+        "maintenance_mode": false
+    },
+    "sfia_levels": {
+        "L1": {
+            "title": "Entry (Follow)",
+            "description": "Follow instructions and practices under close supervision"
+        },
+        "L2": {
+            "title": "Foundation (Assist)",
+            "description": "Assist with defined tasks with limited supervision"
+        },
+        "L3": {
+            "title": "Practitioner (Apply)",
+            "description": "Apply knowledge and experience to complete tasks independently"
+        },
+        "L4": {
+            "title": "Senior (Enable)",
+            "description": "Enable others through guidance and establish practices"
+        },
+        "L5": {
+            "title": "Lead (Ensure/Advise)",
+            "description": "Ensure delivery and advise on complex matters"
+        },
+        "L6": {
+            "title": "Principal (Initiate/Influence)",
+            "description": "Initiate strategy and influence organizational direction"
+        },
+        "L7": {
+            "title": "Expert (Set Strategy)",
+            "description": "Set organizational strategy and industry standards"
+        }
+    },
+    "sector_choices": [
+        "ecommerce",
+        "edtech",
+        "banking",
+        "devops",
+        "govtech",
+        "healthcare",
+        "fintech",
+        "other"
+    ],
+    "proficiency_levels": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "expert"
+    ],
+    "employment_types": [
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Freelance",
+        "Internship"
+    ],
+    "project_statuses": [
+        "active",
+        "completed",
+        "on-hold",
+        "archived"
+    ],
+    "blog_statuses": [
+        "draft",
+        "published",
+        "archived"
+    ],
+    "certification_types": [
+        "certification",
+        "award",
+        "recognition",
+        "publication"
+    ]
+}

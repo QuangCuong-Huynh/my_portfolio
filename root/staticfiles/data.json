@@ -1,0 +1,22 @@
+[
+{
+  "model": "core.sitesettings",
+  "pk": 1,
+  "fields": {
+    "site_title": "Portfolio",
+    "site_tagline": "",
+    "site_description": null,
+    "meta_keywords": "",
+    "google_analytics_id": null,
+    "contact_email": "contact@example.com",
+    "contact_phone": null,
+    "github_url": null,
+    "linkedin_url": null,
+    "twitter_url": null,
+    "enable_blog": true,
+    "enable_contact_form": true,
+    "maintenance_mode": false,
+    "is_active": true
+  }
+}
+]
